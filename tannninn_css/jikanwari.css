@@ -1,148 +1,154 @@
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 20px;
-            background-color: #f4f7f6;
-            color: #333;
-        }
+/* General Body Styles */
+body {
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* これにより子要素（h1, table）が中央寄せになります */
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    /* 新規追加: ページ全体のコンテンツの最大幅を制限したい場合 */
+    /* ここでは直接bodyに指定せず、tableに指定する方が一般的です。 */
+}
 
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-        }
+h1 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    font-weight: 700;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse; /* セルの境界線を結合 */
-            margin: 0 auto; /* 中央寄せ */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-            max-width: 950px; /* テーブルの最大幅を設定 */
-        }
+table {
+    /* 既存のスタイル */
+    width: 95%; /* 画面幅の95%を使用 */
+    max-width: 1000px; /* ★ここを固定したい最大幅に設定します★ */
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden; /* Ensures rounded corners apply to children */
+    /* 中央寄せにするために margin-left/right: auto を追加 */
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        th, td {
-            border: 1px solid #ddd; /* セルの境界線 */
-            width: 150px;
-            padding: 12px 8px;
-            text-align: center;
-            vertical-align: middle;
-            position: relative; /* セレクトボックスの位置決めのため */
-        }
+/* その他の既存のテーブル、セル、入力欄のスタイルはそのまま */
+th, td {
+    border: 1px solid #e0e6ed;
+    padding: 15px 10px;
+    text-align: center;
+    vertical-align: middle;
+}
 
-        th {
-            background-color: #3498db; /* ヘッダーの背景色 */
-            color: white;
-            font-weight: bold;
-            font-size: 1.1em;
-            text-transform: uppercase; /* 大文字にする（見出しとして） */
-        }
+thead th {
+    background-color: #007bff;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1em;
+    padding: 18px 10px;
+}
 
-        /* 最初の列（時間）のスタイル */
-        td:first-child {
-            background-color: #ecf0f1;
-            font-weight: bold;
-            color: #555;
-            width: 120px; /* 時間列の幅を固定 */
-        }
+tbody tr:nth-child(even) {
+    background-color: #f9fbfd;
+}
 
-        /* 科目が入るセルのスタイル */
-        .subject-cell, .empty-cell {
-            background-color: #e8f5e9; /* 薄い緑色 */
-            cursor: pointer; /* クリック可能であることを示す */
-            transition: background-color 0.3s ease; /* ホバー時のアニメーション */
-        }
-        /* 空のセルの初期色を少し変える */
-        .empty-cell {
-            background-color: #fcfcfc; /* 非常に薄い灰色 */
-        }
+tbody tr:hover {
+    background-color: #eef2f5;
+}
 
+td {
+    background-color: #ffffff;
+    font-size: 0.95em;
+    color: #555;
+}
 
-        .subject-cell:hover, .empty-cell:hover {
-            background-color: #dcedc8; /* ホバー時の色 */
-        }
+tbody td:first-child {
+    background-color: #e9f5ff;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
 
-        /* select要素のスタイル */
-        .subject-select {
-            width: calc(100% - 16px); /* paddingを考慮して幅を調整 */
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1em;
-            box-sizing: border-box; /* paddingとborderをwidthに含める */
-            -webkit-appearance: none; /* デフォルトスタイルを無効化 */
-            -moz-appearance: none;
-            appearance: none;
-            background-color: #fff;
-            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%204%205%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M2%200L0%202h4zm0%205L0%203h4z%22%2F%3E%3C%2Fsvg%3E');
-            background-repeat: no-repeat;
-            background-position: right 8px center; /* 矢印の位置を右から8pxに調整 */
-            background-size: 10px 12px;
-            cursor: pointer;
-            padding-right: 28px; /* テキストと矢印の重なりを避けるための右パディング */
-        }
+.subject-cell {
+    background-color: #f0f7f9;
+    font-weight: 500;
+    color: #364e6e;
+    transition: background-color 0.2s ease;
+}
 
-        .subject-select:focus {
-            outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-        }
+.empty-cell {
+    background-color: #ffffff;
+    color: #aaa;
+    font-style: italic;
+    transition: background-color 0.2s ease;
+}
 
-        /* レスポンシブ対応（画面幅が狭い場合） */
-        @media screen and (max-width: 768px) {
-            table, thead, tbody, th, td, tr {
-                display: block;
-            }
+.subject-cell:hover,
+.empty-cell:hover {
+    background-color: #e6f7ff;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 2px #007bff;
+}
 
-            thead tr {
-                position: absolute;
-                top: -9999px;
-                left: -9999px;
-            }
+.edit-select {
+    width: calc(100% - 10px);
+    padding: 8px 5px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    font-size: 0.95em;
+    text-align: center;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23007bff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px;
+}
 
-            tr {
-                border: 1px solid #ccc;
-                margin-bottom: 10px;
-            }
+.edit-select:focus {
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
 
-            td {
-                border: none;
-                border-bottom: 1px solid #eee;
-                position: relative;
-                padding-left: 50%;
-                text-align: right;
-            }
+/* Responsive adjustments */
+@media (max-width: 1020px) { /* テーブルのmax-width + 20px (padding) * 2 */
+    table {
+        width: 100%; /* 画面が1020px以下になったら横幅いっぱいに広がる */
+        max-width: none; /* max-widthの制限を解除 */
+    }
+}
 
-            td:first-child {
-                width: auto; /* レスポンシブ時には幅固定を解除 */
-                text-align: left; /* 時間列は左寄せに戻す */
-            }
+@media (max-width: 768px) {
+    table {
+        font-size: 0.9em;
+        /* width: 100%; この行は上で処理済み */
+    }
+    th, td {
+        padding: 10px 5px;
+    }
+    tbody td:first-child {
+        font-size: 0.8em;
+    }
+    h1 {
+        font-size: 2em;
+    }
+}
 
-            td:before {
-                position: absolute;
-                top: 6px;
-                left: 6px;
-                width: 45%;
-                padding-right: 10px;
-                white-space: nowrap;
-                text-align: left;
-                font-weight: bold;
-                color: #34495e;
-            }
-
-            /* 各列のヘッダーをデータとして表示 */
-            td:nth-of-type(2):before { content: "月"; }
-            td:nth-of-type(3):before { content: "火"; }
-            td:nth-of-type(4):before { content: "水"; }
-            td:nth-of-type(5):before { content: "木"; }
-            td:nth-of-type(6):before { content: "金"; }
-
-            .subject-select {
-                width: 100%; /* レスポンシブ時には100%幅にする */
-                margin-left: 0; /* 左側の調整をリセット */
-                margin-right: 0; /* 右側の調整をリセット */
-                padding-right: 38px; /* レスポンシブ時にさらに右パディングを増やす */
-                text-align: left; /* テキストを左寄せに設定 */
-            }
-        }
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    th, td {
+        padding: 8px 3px;
+    }
+    tbody td:first-child {
+        font-size: 0.7em;
+    }
+}

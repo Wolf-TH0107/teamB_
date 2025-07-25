@@ -1,51 +1,141 @@
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #add8e6; /* Light blue background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 30px;
-            border: 1px solid #000; /* Black border */
-            width: 400px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        h1 {
-            font-size: 20px;
-            margin-bottom: 30px;
-        }
-        .form-group {
-            border: 1px solid #000; /* Black border around input groups */
-            padding: 20px;
-            margin-bottom: 30px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 16px;
-            text-align: left;
-        }
-        .form-group input[type="text"],
-        .form-group input[type="email"] {
-            width: calc(100% - 20px);
-            padding: 8px 10px;
-            margin-bottom: 15px;
-            border: 1px solid #000; /* Black border for input fields */
-            font-size: 16px;
-        }
-        button {
-            background-color: #fff; /* White background for button */
-            color: #000;
-            padding: 10px 40px;
-            border: 1px solid #000; /* Black border for button */
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #f0f0f0;
-        }
+/* General Body Styles */
+body {
+    font-family: 'Segoe UI', 'Roboto', sans-serif; /* Modern, clean font stack */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #f0f2f5 0%, #e0e5ec 100%); /* Subtle gradient background */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Container for the Form */
+.container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft, modern shadow */
+    width: 100%;
+    max-width: 450px; /* Max width for better readability on larger screens */
+    box-sizing: border-box;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.container:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+/* Heading Style */
+h1 {
+    color: #2c3e50; /* Darker, professional color */
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* Form Grouping for Labels and Inputs */
+.form-group {
+    margin-bottom: 25px;
+    text-align: left; /* Align labels and inputs to the left */
+}
+
+/* Label Styles */
+label {
+    display: block; /* Each label on its own line */
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+/* Input Field Styles */
+input[type="email"],
+input[type="text"] {
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 8px; /* Slightly more rounded corners */
+    font-size: 1em;
+    color: #333;
+    transition: all 0.3s ease; /* Smooth transition for focus effect */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    -webkit-appearance: none; /* Remove default iOS styling */
+    -moz-appearance: none; /* Remove default Firefox styling */
+    appearance: none;
+}
+
+input[type="email"]:focus,
+input[type="text"]:focus {
+    border-color: #007bff; /* Highlight color on focus */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Subtle glow on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Button Styles */
+button[type="submit"] {
+    background-color: #007bff; /* Primary action color */
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effects */
+    width: 100%; /* Full width button */
+    margin-top: 25px; /* More space above the button */
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2); /* Subtle button shadow */
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3); /* Enhanced shadow on hover */
+}
+
+button[type="submit"]:active {
+    background-color: #004085; /* Even darker on click */
+    transform: translateY(0); /* Return to original position */
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2); /* Reduced shadow on click */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .container {
+        margin: 20px;
+        padding: 30px 25px; /* Adjust padding for smaller screens */
+    }
+
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+
+    input[type="email"],
+    input[type="text"] {
+        padding: 12px 14px;
+        font-size: 0.95em;
+    }
+
+    button[type="submit"] {
+        padding: 12px 25px;
+        font-size: 1em;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 400px) {
+    .container {
+        padding: 25px 20px;
+    }
+
+    h1 {
+        font-size: 1.6em;
+    }
+}
