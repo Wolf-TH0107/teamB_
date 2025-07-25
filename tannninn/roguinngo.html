@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../tannninn_css/roguinngo.css" />
+
+    <title>担任ログイン後画面 - 出欠登録</title>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header class="header">
+
+            <h1>担任：<span id="teacher-name">田中 太郎</span></h1>
+
+            <a href="#" class="logout-btn">ログアウト</a>
+
+        </header>
+
+
+        <h2 class="section-title">＜ 出欠登録 ＞</h2>
+
+
+    <div class="tanninyou">
+
+        <div class="form-group">
+
+            <label for="class-select">クラス</label>
+
+            <select id="class-select">
+
+                <option value="">クラスを選択してください</option>
+
+                <option value="1-1">1年1組</option>
+
+                <option value="1-2">1年2組</option>
+
+                <option value="2-1">2年1組</option>
+
+                <option value="3-1">3年1組</option>
+
+                </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="period-select">コマ</label>
+
+            <select id="period-select">
+
+                <option value="">コマを選択してください</option>
+
+                <option value="1">1時間目</option>
+
+                <option value="2">2時間目</option>
+
+                <option value="3">3時間目</option>
+
+                <option value="4">4時間目</option>
+
+                <option value="5">5時間目</option>
+
+                <option value="6">6時間目</option>
+
+                </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>カレンダー初期値</label>
+
+            <p id="calendar-initial-value">NOW</p>
+
+        </div>
+
+
+        <div class="touroku">
+
+            <button class="touroku1">登録画面へ</button>
+
+        </div><!-- /.touroku -->
+
+
+    </div><!-- /.tanninyou -->
+
+
+        
+
+    <div class="button">
+
+        <div class="jikan">
+
+
+            <button class="jikannwari">時間割確認画面へ</button>
+
+
+            <button class="usersettei">ユーザ設定へ</button>
+
+
+        </div><!-- /.jikan -->
+
+
+    <div class="gakusei">
+
+        <button class="gakuseijyouhou">学生情報ページへ</button>
+
+    </div><!-- /.gakusei -->
+
+
+    </div><!-- /.button -->
+
+
+    <script>
+
+        // JavaScriptを使って動的に先生の名前を設定する場合の例
+
+        // 例えば、ログイン時に取得した先生の名前をここに挿入します
+
+        // document.getElementById('teacher-name').textContent = "山田 花子";
+
+
+        // カレンダーの初期値を現在の日付にする場合の例（オプション）
+
+        // const now = new Date();
+
+        // const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+        // document.getElementById('calendar-initial-value').textContent = now.toLocaleDateString('ja-JP', options);
+
+    </script>
+
+</body>
+
+</html> 

@@ -1,0 +1,104 @@
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f2f7; /* 明るい水色 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .register-container {
+            background-color: #ffffff;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            box-sizing: border-box;
+        }
+        .register-container h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #263238; /* 濃いめのグレー */
+            font-size: 28px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #455a64; /* 中間のグレー */
+            font-weight: bold;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #b0bec5; /* 薄いグレー */
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group input[type="password"]:focus,
+        .form-group select:focus {
+            border-color: #03a9f4; /* 明るい青 */
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(3, 169, 244, 0.2);
+        }
+        /* 教員の役割選択部分 (初期は非表示) */
+        #teacherRoleSelection {
+            display: none; /* 初期状態では非表示 */
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            margin-top: 15px;
+        }
+        #teacherRoleSelection label {
+            display: inline-block; /* ラジオボタンとラベルを横並びに */
+            margin-right: 20px;
+            font-weight: normal; /* ラジオボタンのラベルは太字にしない */
+            color: #333;
+        }
+        #teacherRoleSelection input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 15px;
+            background-color: #03a9f4; /* 明るい青 */
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .form-group button:hover {
+            background-color: #0288d1; /* 少し濃い青 */
+            transform: translateY(-2px);
+        }
+        .form-group button:active {
+            transform: translateY(0);
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 15px;
+        }
+        .login-link a {
+            color: #03a9f4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }

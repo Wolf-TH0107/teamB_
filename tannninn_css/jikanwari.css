@@ -1,0 +1,148 @@
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse; /* セルの境界線を結合 */
+            margin: 0 auto; /* 中央寄せ */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            max-width: 950px; /* テーブルの最大幅を設定 */
+        }
+
+        th, td {
+            border: 1px solid #ddd; /* セルの境界線 */
+            width: 150px;
+            padding: 12px 8px;
+            text-align: center;
+            vertical-align: middle;
+            position: relative; /* セレクトボックスの位置決めのため */
+        }
+
+        th {
+            background-color: #3498db; /* ヘッダーの背景色 */
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-transform: uppercase; /* 大文字にする（見出しとして） */
+        }
+
+        /* 最初の列（時間）のスタイル */
+        td:first-child {
+            background-color: #ecf0f1;
+            font-weight: bold;
+            color: #555;
+            width: 120px; /* 時間列の幅を固定 */
+        }
+
+        /* 科目が入るセルのスタイル */
+        .subject-cell, .empty-cell {
+            background-color: #e8f5e9; /* 薄い緑色 */
+            cursor: pointer; /* クリック可能であることを示す */
+            transition: background-color 0.3s ease; /* ホバー時のアニメーション */
+        }
+        /* 空のセルの初期色を少し変える */
+        .empty-cell {
+            background-color: #fcfcfc; /* 非常に薄い灰色 */
+        }
+
+
+        .subject-cell:hover, .empty-cell:hover {
+            background-color: #dcedc8; /* ホバー時の色 */
+        }
+
+        /* select要素のスタイル */
+        .subject-select {
+            width: calc(100% - 16px); /* paddingを考慮して幅を調整 */
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            box-sizing: border-box; /* paddingとborderをwidthに含める */
+            -webkit-appearance: none; /* デフォルトスタイルを無効化 */
+            -moz-appearance: none;
+            appearance: none;
+            background-color: #fff;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%204%205%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M2%200L0%202h4zm0%205L0%203h4z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 8px center; /* 矢印の位置を右から8pxに調整 */
+            background-size: 10px 12px;
+            cursor: pointer;
+            padding-right: 28px; /* テキストと矢印の重なりを避けるための右パディング */
+        }
+
+        .subject-select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        /* レスポンシブ対応（画面幅が狭い場合） */
+        @media screen and (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr {
+                border: 1px solid #ccc;
+                margin-bottom: 10px;
+            }
+
+            td {
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+            }
+
+            td:first-child {
+                width: auto; /* レスポンシブ時には幅固定を解除 */
+                text-align: left; /* 時間列は左寄せに戻す */
+            }
+
+            td:before {
+                position: absolute;
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+                color: #34495e;
+            }
+
+            /* 各列のヘッダーをデータとして表示 */
+            td:nth-of-type(2):before { content: "月"; }
+            td:nth-of-type(3):before { content: "火"; }
+            td:nth-of-type(4):before { content: "水"; }
+            td:nth-of-type(5):before { content: "木"; }
+            td:nth-of-type(6):before { content: "金"; }
+
+            .subject-select {
+                width: 100%; /* レスポンシブ時には100%幅にする */
+                margin-left: 0; /* 左側の調整をリセット */
+                margin-right: 0; /* 右側の調整をリセット */
+                padding-right: 38px; /* レスポンシブ時にさらに右パディングを増やす */
+                text-align: left; /* テキストを左寄せに設定 */
+            }
+        }

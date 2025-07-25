@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新しいパスワード設定</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5; /* Lighter, modern background */
+            margin: 0;
+            font-family: 'Noto Sans JP', sans-serif; /* Modern Japanese font */
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 12px; /* More rounded corners */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Softer, larger shadow */
+            padding: 40px;
+            text-align: center;
+            width: 400px; /* Slightly wider container */
+            max-width: 90%; /* Responsive width */
+            box-sizing: border-box;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #2c3e50; /* Darker heading color */
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1em; /* Slightly smaller label font */
+            color: #555;
+            font-weight: 500;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 14px 15px; /* Increased padding */
+            border: 1px solid #e0e0e0; /* Lighter border */
+            border-radius: 8px; /* More rounded input fields */
+            font-size: 1.05em;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="password"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Subtle focus shadow */
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 35px;
+            gap: 15px; /* Space between buttons */
+        }
+
+        .button {
+            flex-grow: 1; /* Allow buttons to grow and fill space */
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px; /* More rounded buttons */
+            font-size: 1.05em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .button-link {
+            text-decoration: none; /* Remove underline from links */
+            display: flex; /* Make links behave like flex items */
+            flex-grow: 1;
+        }
+
+        .back-button {
+            background-color: #e9ecef; /* Lighter gray for back button */
+            color: #495057;
+            border: 1px solid #dee2e6;
+        }
+
+        .back-button:hover {
+            background-color: #dae0e5;
+            transform: translateY(-2px); /* Slight lift effect */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .update-button {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .update-button:hover {
+            background-color: #0069d9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>新しいパスワードを設定</h2>
+        <div class="form-group">
+            <label for="new_password">新しいパスワード</label>
+            <input type="password" id="new_password" name="new_password" placeholder="新しいパスワードを入力">
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">新しいパスワードの再入力</label>
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="新しいパスワードを再入力">
+        </div>
+        <div class="buttons">
+            <a href="change.html" class="button-link">
+                <div class="button back-button">戻る</div>
+            </a>
+            <a href="change.html" class="button-link">
+                <div class="button update-button">更新</div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

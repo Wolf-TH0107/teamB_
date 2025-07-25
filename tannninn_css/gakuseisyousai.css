@@ -1,0 +1,179 @@
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin: 0;
+        }
+        .header .back-btn, .header .logout-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .header .logout-btn {
+            background-color: #e74c3c;
+        }
+        .header .back-btn:hover {
+            background-color: #2980b9;
+        }
+        .header .logout-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .section-title {
+            font-size: 22px;
+            color: #34495e;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .search-area {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 0; /* gridのgapで調整するため */
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+            font-size: 14px;
+        }
+        .form-group select,
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-8859-1,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%204%205%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M2%200L0%202h4zm0%205L0%203h4z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px;
+        }
+        .form-group input[type="text"] {
+            background-image: none; /* テキスト入力には矢印不要 */
+        }
+
+        .search-buttons {
+            text-align: right;
+            margin-top: 20px;
+        }
+        .search-buttons button {
+            background-color: #28a745; /* 検索ボタンの色 */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .search-buttons button:hover {
+            background-color: #218838;
+        }
+
+        .student-info-section {
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        .student-list-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1.5fr 1fr; /* 例: 学籍番号, 名前, 学科, 学年, 詳細 */
+            font-weight: bold;
+            padding: 10px 0;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 10px;
+            color: #444;
+            font-size: 15px;
+        }
+        .student-item {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1.5fr 1fr;
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            align-items: center;
+        }
+        .student-item:last-child {
+            border-bottom: none;
+        }
+        .student-item div {
+            padding-right: 10px;
+            word-break: break-all; /* 長い文字の折り返し */
+        }
+        .student-item .detail-link {
+            background-color: #007bff;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 13px;
+            transition: background-color 0.2s ease;
+            display: inline-block; /* ボタンのように表示 */
+            text-align: center;
+        }
+        .student-item .detail-link:hover {
+            background-color: #0056b3;
+        }
+        .no-results {
+            text-align: center;
+            color: #777;
+            padding: 30px;
+            font-size: 18px;
+        }
+         .student-info-section {
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }

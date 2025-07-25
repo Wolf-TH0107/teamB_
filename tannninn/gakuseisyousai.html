@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../tannninn_css/gakuseisyousai.css">
+    <title>学生情報検索</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Body and Container Styles */
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px; /* Add some padding for smaller screens */
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 900px; /* Wider container for search and list */
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0; /* Subtle separator */
+        }
+
+        .header h1 {
+            font-size: 2em;
+            color: #2c3e50;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .header div {
+            display: flex;
+            gap: 15px; /* Space between buttons */
+        }
+
+        .back-btn, .logout-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .back-btn {
+            background-color: #e9ecef;
+            color: #495057;
+            border: 1px solid #dee2e6;
+        }
+        .back-btn:hover {
+            background-color: #dae0e5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logout-btn {
+            background-color: #dc3545; /* Red for logout */
+            color: white;
+            border: none;
+        }
+        .logout-btn:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
+        }
+
+        /* Section Title Styles */
+        .section-title {
+            font-size: 1.6em;
+            color: #34495e;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-align: left; /* Align to left for sections */
+            border-bottom: 2px solid #007bff; /* Accent line */
+            padding-bottom: 10px;
+            margin-top: 40px; /* Space above new sections */
+        }
+
+        /* Search Area Styles */
+        .search-area {
+            background-color: #f8faff; /* Light blue background for search */
+            border: 1px solid #e0e6f0;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+            gap: 20px; /* Space between form groups */
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 0; /* Reset default margin */
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group select,
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            -webkit-appearance: none; /* Remove default select arrow */
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M192%2096L128%20160%2064%2096z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 12px;
+            padding-right: 35px; /* Make space for the arrow */
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+        .search-buttons {
+            display: flex;
+            justify-content: flex-end; /* Align buttons to the right */
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .search-buttons button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .search-buttons button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+        }
+        .search-buttons button[type="submit"]:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .search-buttons button[type="reset"] {
+            background-color: #6c757d; /* Gray for clear button */
+            color: white;
+            box-shadow: 0 4px 10px rgba(108, 117, 125, 0.2);
+        }
+        .search-buttons button[type="reset"]:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(108, 117, 125, 0.3);
+        }
+
+        /* Student List Styles */
+        .student-info-section {
+            background-color: #f8faff;
+            border: 1px solid #e0e6f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .student-list-header {
+            display: grid;
+            grid-template-columns: 100px 1.5fr 1.5fr 80px 100px; /* Adjusted column widths */
+            gap: 10px;
+            background-color: #eaf1f8;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center; /* Center header text */
+        }
+
+        .student-item {
+            display: grid;
+            grid-template-columns: 100px 1.5fr 1.5fr 80px 100px; /* Match header grid */
+            gap: 10px;
+            padding: 12px 20px;
+            border-bottom: 1px solid #f0f4f8; /* Lighter separator */
+            align-items: center;
+            text-align: center; /* Center item text */
+        }
+        .student-item:last-child {
+            border-bottom: none;
+        }
+        .student-item:hover {
+            background-color: #eef5fc; /* Subtle hover effect */
+        }
+
+        /* Detail button for each student */
+        .detail-btn {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #28a744; /* Green for details button */
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.85em;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .detail-btn:hover {
+            background-color: #218838;
+            transform: translateY(-1px);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            .header h1 {
+                text-align: center;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            .header div {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .search-form {
+                grid-template-columns: 1fr; /* Stack columns on small screens */
+            }
+
+            .search-buttons {
+                justify-content: center; /* Center buttons on small screens */
+            }
+
+            .student-list-header, .student-item {
+                grid-template-columns: 1fr; /* Stack columns for list on very small screens */
+                text-align: left;
+            }
+            .student-list-header div, .student-item div {
+                padding: 5px 0;
+                border-bottom: 1px dashed #e0e0e0;
+            }
+            .student-list-header div:last-child, .student-item div:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <h1>学生情報検索</h1>
+            <div>
+                <a href="javascript:history.back()" class="back-btn">戻る</a>
+                <a href="#" class="logout-btn">ログアウト</a>
+            </div>
+        </header>
+
+        <h2 class="section-title">学生検索</h2>
+
+        <div class="search-area">
+            <form id="studentSearchForm">
+                <div class="search-form">
+                    <div class="form-group">
+                        <label for="department-select">学科検索</label>
+                        <select id="department-select" name="department">
+                            <option value="" selected="selected">全ての学科</option>
+                            <option value="情報工学">情報工学</option>
+                            <option value="機械工学">機械工学</option>
+                            <option value="電気電子工学">電気電子工学</option>
+                            <option value="建築学">建築学</option>
+                            <option value="その他">その他</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="grade-select">学年検索</label>
+                        <select id="grade-select" name="grade">
+                            <option value="" selected="selected">全ての学年</option>
+                            <option value="1年">1年</option>
+                            <option value="2年">2年</option>
+                            <option value="3年">3年</option>
+                            <option value="4年">4年</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="student-name-search">個人検索 (名前/学籍番号)</label>
+                        <input type="text" id="student-name-search" name="keyword" placeholder="例: 山田太郎, 12345">
+                    </div>
+                </div>
+
+                <div class="search-buttons">
+                    <button type="submit">検索</button>
+                    <button type="reset" id="clearSearch">クリア</button>
+                </div>
+            </form>
+        </div>
+
+        <h2 class="section-title">学生情報一覧</h2>
+
+        <div class="student-info-section">
+            <div class="student-list-header">
+                <div>学籍番号</div>
+                <div>氏名</div>
+                <div>学科</div>
+                <div>学年</div>
+                <div>操作</div>
+            </div>
+            <div id="student-list">
+                <div class="student-item">
+                    <div>S001</div>
+                    <div>田中 太郎</div>
+                    <div>情報工学</div>
+                    <div>3年</div>
+                    <div><a href="gakuseijyouhousyousai.html?id=S001" class="detail-btn">詳細</a></div>
+                </div>
+                <div class="student-item">
+                    <div>S002</div>
+                    <div>鈴木 花子</div>
+                    <div>機械工学</div>
+                    <div>2年</div>
+                    <div><a href="gakuseijyouhousyousai.html?id=S002" class="detail-btn">詳細</a></div>
+                </div>
+                <div class="student-item">
+                    <div>S003</div>
+                    <div>佐藤 健</div>
+                    <div>電気電子工学</div>
+                    <div>4年</div>
+                    <div><a href="gakuseijyouhousyousai.html?id=S003" class="detail-btn">詳細</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Placeholder for your existing JavaScript in gakuseisyousai.js
+        // You would typically use this script to fetch data and dynamically create student-item divs.
+
+        // Example: How you might handle "詳細" link generation in your JS
+        // When dynamically creating a student-item div:
+        /*
+        function createStudentItem(studentData) {
+            const studentItem = document.createElement('div');
+            studentItem.classList.add('student-item');
+            studentItem.innerHTML = `
+                <div>${studentData.studentId}</div>
+                <div>${studentData.name}</div>
+                <div>${studentData.department}</div>
+                <div>${studentData.grade}</div>
+                <div><a href="gakuseijyouhousyousai.html?id=${studentData.studentId}" class="detail-btn">詳細</a></div>
+            `;
+            return studentItem;
+        }
+
+        // When you get search results, clear #student-list and append new items:
+        const studentListDiv = document.getElementById('student-list');
+        // ... (your search logic) ...
+        // studentListDiv.innerHTML = ''; // Clear previous results
+        // results.forEach(student => {
+        //     studentListDiv.appendChild(createStudentItem(student));
+        // });
+        */
+    </script>
+    <script src="../tanninn_js/gakuseisyousai.js"></script>
+
+</body></html>

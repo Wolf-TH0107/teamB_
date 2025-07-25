@@ -1,0 +1,57 @@
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #add8e6; /* Light blue background */
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px; /* Adjust as needed */
+            box-sizing: border-box;
+        }
+        .menu-section {
+            border: 1px solid #a0522d; /* Sienna/brownish color for the inner box */
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .menu-item {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .menu-item:hover {
+            background-color: #e0e0e0;
+        }
+        .button {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 12px;
+            margin-bottom: 15px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 1.1em;
+        }
+        .button:hover {
+            background-color: #e0e0e0;
+        }
+        .highlight-button {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+        }
+        .highlight-button:hover {
+            background-color: #45a049;
+        }

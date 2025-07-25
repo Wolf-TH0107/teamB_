@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出席簿管理システム - ログイン</title>
+    <link rel="stylesheet" href="login.css">
+    <style>
+        /* エラーメッセージ用のスタイル */
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="logingamen">
+        <img src="your_logo.png" alt="" class="logo"> 
+        <h2>出席簿管理システム</h2>
+
+        <div id="registrationErrorMessage" class="error-message" style="display: none;">
+        </div>
+
+        <div id="loginErrorMessage" class="error-message" style="display: none;">
+        </div>
+
+        <form action="/login" method="post"> 
+            <div class="user-Email">
+                <label for="username">ユーザー名またはメールアドレス</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="user-Email">
+                <label for="password">パスワード</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="sinki">
+                <a href="#" class="sinkitouroku">新規登録はこちら</a>
+            </div><br>
+
+            <button type="submit">ログイン</button>
+            
+        </form>
+        <div class="links">
+            <a href="#">パスワードを忘れた場合</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const registrationError = urlParams.get('registrationError');
+            const loginError = urlParams.get('loginError'); // **新しく追加: ログインエラーパラメータを取得**
+            const registrationErrorMessageDiv = document.getElementById('registrationErrorMessage');
+            const loginErrorMessageDiv = document.getElementById('loginErrorMessage'); // **新しく追加: ログインエラーメッセージのdivを取得**
+
+            if (registrationError) {
+                registrationErrorMessageDiv.style.display = 'block';
+                registrationErrorMessageDiv.textContent = '登録に失敗しました。入力内容をご確認ください。';
+                // history.replaceState(null, '', window.location.pathname); // オプション：URLからパラメータを削除する場合
+            }
+
+            // **新しく追加: ログインエラーメッセージを表示するロジック**
+            if (loginError) {
+                loginErrorMessageDiv.style.display = 'block';
+                // 'loginError'の値に応じてエラーメッセージをカスタマイズすることも可能です。
+                // ここでは一般的なメッセージを使用しています。
+                loginErrorMessageDiv.textContent = 'ユーザー名またはパスワードが正しくありません。'; 
+                // history.replaceState(null, '', window.location.pathname); // オプション：URLからパラメータを削除する場合
+            }
+        });
+    </script>
+</body>
+</html>

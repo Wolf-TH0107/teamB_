@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>システムユーザー登録 - 出席簿管理システム</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif; /* Modern Japanese font */
+            background-color: #f0f2f5; /* Light gray background for modern feel */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .register-container {
+            background-color: #ffffff;
+            padding: 40px 50px; /* Increased padding, slightly wider side padding */
+            border-radius: 12px; /* More rounded corners */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Softer, larger shadow */
+            width: 100%;
+            max-width: 580px; /* Slightly wider container */
+            box-sizing: border-box;
+        }
+
+        h2 {
+            font-size: 2em; /* Larger heading */
+            color: #2c3e50;
+            margin-bottom: 35px; /* More space below heading */
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px; /* Consistent spacing between form groups */
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px; /* Space between label and input */
+            font-size: 1em;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group select {
+            width: 100%;
+            padding: 14px 15px; /* Consistent padding */
+            border: 1px solid #e0e0e0; /* Lighter border */
+            border-radius: 8px; /* More rounded input fields */
+            font-size: 1.05em;
+            box-sizing: border-box;
+            background-color: #fcfcfc; /* Slightly off-white background for inputs */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Subtle focus shadow */
+        }
+
+        /* Radio buttons styling for "教員の役割" */
+        .form-group input[type="radio"] {
+            width: auto; /* Override 100% width for radio buttons */
+            margin-right: 8px; /* Space between radio button and its label */
+            vertical-align: middle; /* Align with text */
+            height: 18px; /* Make radio buttons a bit larger */
+            width: 18px;
+            accent-color: #007bff; /* Accent color for radio buttons */
+        }
+
+        .form-group label[for="roleHomeroom"],
+        .form-group label[for="roleInstructor"] {
+            display: inline-block; /* Display labels inline with radios */
+            margin-right: 20px; /* Space between radio groups */
+            font-weight: normal; /* Reset font weight for radio labels */
+            color: #333;
+        }
+
+        #teacherRoleSelection {
+            border: 1px dashed #cceeff; /* Dotted border for this section */
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px; /* Space above this section */
+            margin-bottom: 25px; /* Space below this section */
+            background-color: #f8faff; /* Lightest blue background */
+        }
+
+        #teacherRoleSelection label:first-of-type { /* Label "教員の役割" */
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 15px; /* More padding for a substantial button */
+            background-color: #28a745; /* Green for registration button */
+            color: white;
+            border: none;
+            border-radius: 8px; /* Rounded button corners */
+            font-size: 1.15em; /* Larger font size */
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 30px; /* Space above button */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2); /* Subtle shadow for button */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.95em;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .login-link a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>システムユーザー新規登録</h2>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="username">ユーザー名（表示名）</label>
+                <input type="text" id="username" name="username" placeholder="例: 土田 拓心" required>
+            </div>
+            <div class="form-group">
+                <label for="login_id">ログインID</label>
+                <input type="text" id="login_id" name="login_id" placeholder="例: tsuchida.h" required>
+            </div>
+            <div class="form-group">
+                <label for="email">メールアドレス</label>
+                <input type="email" id="email" name="email" placeholder="例: your.email@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="password">パスワード</label>
+                <input type="password" id="password" name="password" placeholder="8文字以上のパスワード" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">パスワード（確認用）</label>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="パスワードを再度入力してください" required>
+            </div>
+            <div class="form-group">
+                <label for="role">権限</label>
+                <select id="role" name="role" required onchange="toggleTeacherRoleSelection()">
+                    <option value="">選択してください</option>
+                    <option value="admin">管理者</option>
+                    <option value="teacher">教員</option>
+                </select>
+            </div>
+
+            <div id="teacherRoleSelection" class="form-group" style="display: none;">
+                <label>教員の役割:</label>
+                <div>
+                    <input type="radio" id="roleHomeroom" name="teacherRole" value="homeroom">
+                    <label for="roleHomeroom">担任</label>
+                    <input type="radio" id="roleInstructor" name="teacherRole" value="instructor">
+                    <label for="roleInstructor">講師</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">アカウント登録</button>
+            </div>
+        </form>
+        <div class="login-link">
+            <p>既にアカウントをお持ちですか？ <a href="user_login.html">ログインはこちら</a></p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript function to toggle the teacher role selection
+        function toggleTeacherRoleSelection() {
+            const roleSelect = document.getElementById('role');
+            const teacherRoleSelectionDiv = document.getElementById('teacherRoleSelection');
+            if (roleSelect.value === 'teacher') {
+                teacherRoleSelectionDiv.style.display = 'block';
+            } else {
+                teacherRoleSelectionDiv.style.display = 'none';
+            }
+        }
+
+        // Call on page load to set initial state
+        document.addEventListener('DOMContentLoaded', toggleTeacherRoleSelection);
+    </script>
+</body>
+</html>

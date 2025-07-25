@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学生詳細情報 - 出席簿管理システム</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* あなたの既存のCSSをここに貼り付けます */
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 800px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .main-title {
+      font-size: 2em;
+      color: #2c3e50;
+      margin-bottom: 35px;
+      font-weight: 700;
+    }
+
+    .info-block, .attendance-info, .subjects-block {
+      background-color: #f8faff;
+      border: 1px solid #e0e6f0;
+      border-radius: 10px;
+      padding: 30px;
+      margin-bottom: 30px;
+      text-align: left;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+    .info-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-row label {
+      flex: 0 0 140px;
+      margin-right: 20px;
+      font-size: 1em;
+      color: #555;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .info-row input[type="text"] {
+      flex-grow: 1;
+      padding: 12px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1.05em;
+      background-color: #ffffff;
+      color: #333;
+      box-sizing: border-box;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    .info-row #grade, .info-row #enrollment-year {
+      width: 100px;
+      flex-grow: 0;
+    }
+    .info-row label[for="enrollment-year"] {
+      flex: 0 0 auto;
+      margin-left: 30px;
+    }
+
+    .attendance-info {
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+      padding: 25px 30px;
+    }
+    .attendance-item {
+      text-align: center;
+      flex-grow: 1;
+      padding: 15px 0;
+      border: 1px solid #dce4ef;
+      border-radius: 10px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    .attendance-item label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 0.95em;
+      color: #666;
+      font-weight: 500;
+    }
+    .attendance-item input[type="text"] {
+      width: 80px;
+      padding: 8px 10px;
+      font-size: 1.4em;
+      font-weight: 700;
+      border: none;
+      text-align: center;
+      background-color: transparent;
+    }
+    .attendance-item .percentage {
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #555;
+      margin-left: 5px;
+    }
+
+    .subjects-block h3 {
+      font-size: 1.5em;
+      color: #2c3e50;
+      margin-bottom: 25px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .subjects-table-container {
+      overflow-x: auto;
+    }
+
+    .subjects-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    .subjects-table th, .subjects-table td {
+      padding: 12px 15px;
+      border: 1px solid #e0e6f0;
+      text-align: center;
+      font-size: 0.95em;
+    }
+
+    .subjects-table thead th {
+      background-color: #eaf1f8;
+      color: #2c3e50;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .subjects-table tbody tr:nth-child(even) {
+      background-color: #fcfdfe;
+    }
+
+    .subjects-table tbody tr:hover {
+      background-color: #eef5fc;
+    }
+
+    .subjects-table td a {
+      color: #007bff;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .subjects-table td a:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+
+    .back-button-container {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 14px 30px;
+      background-color: #e9ecef;
+      color: #495057;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      font-size: 1.05em;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #dae0e5;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* データが見つからなかった場合のメッセージ */
+    .no-data-message {
+      text-align: center;
+      color: #dc3545;
+      font-size: 1.2em;
+      margin-top: 30px;
+      display: none; /* 初期状態では非表示 */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="main-title">学生詳細情報</div>
+
+    <div class="info-block" id="student-info-block">
+      <div class="info-row">
+        <label for="student-id">学籍番号</label>
+        <input type="text" id="student-id" value="" readonly>
+      </div>
+      <div class="info-row">
+        <label for="department-course">学科・コース</label>
+        <input type="text" id="department-course" value="" readonly>
+      </div>
+      <div class="info-row">
+        <label for="grade">学年</label>
+        <input type="text" id="grade" value="" readonly>
+        <label for="enrollment-year">入学年度</label>
+        <input type="text" id="enrollment-year" value="" readonly>
+      </div>
+      <div class="info-row">
+        <label for="name">名前</label>
+        <input type="text" id="name" value="" readonly>
+      </div>
+      <div class="info-row">
+        <label for="name-furigana">名前（フリガナ）</label>
+        <input type="text" id="name-furigana" value="" readonly>
+      </div>
+      <div class="info-row">
+        <label for="enrollment-status">在籍状況</label>
+        <input type="text" id="enrollment-status" value="" readonly>
+      </div>
+    </div>
+
+    <div class="attendance-info" id="attendance-summary-block">
+      <div class="attendance-item">
+        <label for="total-attendance">総出席率</label>
+        <div>
+          <input type="text" id="total-attendance" value="" readonly>
+          <span class="percentage">%</span>
+        </div>
+      </div>
+      <div class="attendance-item">
+        <label for="absent-count">欠課数</label>
+        <input type="text" id="absent-count" value="" readonly>
+      </div>
+    </div>
+
+    <div class="subjects-block" id="subjects-data-block">
+      <h3>履修科目</h3>
+      <div class="subjects-table-container">
+        <table class="subjects-table">
+          <thead>
+            <tr>
+              <th>科目名</th>
+              <th>欠課</th>
+              <th>欠席</th>
+              <th>遅刻</th>
+              <th>早退</th>
+              <th>出停</th>
+              <th>詳細</th>
+            </tr>
+          </thead>
+          <tbody id="subjects-table-body">
+            </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="no-student-data" class="no-data-message">
+      学生情報が見つかりませんでした。
+    </div>
+
+    <div class="back-button-container">
+      <a href="gakuseisyousai.html" class="back-button">戻る</a> //gakuseisyousai.htmlに戻る
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // data.js
+      const ALL_STUDENTS_DATA = [
+        {
+          id: 'S001',
+          name: '山田 太郎',
+          nameFurigana: 'ヤマダ タロウ',
+          department: '情報工学',
+          departmentCourse: '情報工学科・ソフトウェア開発コース', // 詳細用に具体的なコースを追加
+          grade: '3年',
+          enrollmentYear: '2023',
+          enrollmentStatus: '在籍中',
+          totalAttendance: 95,
+          absentCount: 5,
+          subjects: [
+            { name: 'データ構造とアルゴリズム', absent: 1, tardy: 0, earlyLeave: 0, suspension: 0, soa:0, detailLink: '#' },
+            { name: 'オブジェクト指向プログラミング', absent: 0, tardy: 1, earlyLeave: 0, suspension: 0, soa:0, detailLink: '#' },
+            { name: 'Webアプリケーション開発', absent: 2, tardy: 0, earlyLeave: 1, suspension: 0, soa:0, detailLink: '#' }
+          ]
+        },
+        {
+          id: 'S002',
+          name: '鈴木 花子',
+          nameFurigana: 'スズキ ハナコ',
+          department: '建築学',
+          departmentCourse: '建築学科・意匠設計コース',
+          grade: '2年',
+          enrollmentYear: '2024',
+          enrollmentStatus: '在籍中',
+          totalAttendance: 88,
+          absentCount: 12,
+          subjects: [
+            { name: '建築構造力学', absent: 3, tardy: 2, earlyLeave: 0, suspension: 0, soa: 0, detailLink: '#' },
+            { name: '建築史', absent: 2, tardy: 0, earlyLeave: 0, suspension: 0, soa: 0, detailLink: '#' }
+          ]
+        },
+        {
+          id: 'S003',
+          name: '佐藤 健太',
+          nameFurigana: 'サトウ ケンタ',
+          department: '情報工学',
+          departmentCourse: '情報工学科・ネットワークセキュリティコース',
+          grade: '1年',
+          enrollmentYear: '2025',
+          enrollmentStatus: '在籍中',
+          totalAttendance: 98,
+          absentCount: 2,
+          subjects: [
+            { name: '情報科学基礎', absent: 0, tardy: 0, earlyLeave: 0, suspension: 0, soa: 0, detailLink: '#' },
+            { name: 'プログラミング入門', absent: 0, tardy: 0, earlyLeave: 0, suspension: 0, soa: 0, detailLink: '#' }
+          ]
+        },
+        {
+          id: 'S004',
+          name: '高橋 美咲',
+          nameFurigana: 'タカハシ ミサキ',
+          department: '電気電子工学',
+          departmentCourse: '電気電子工学科・電力システムコース',
+          grade: '4年',
+          enrollmentYear: '2022',
+          enrollmentStatus: '在籍中',
+          totalAttendance: 92,
+          absentCount: 8,
+          subjects: [
+            { name: '電気回路', absent: 1, tardy: 0, earlyLeave: 0, suspension: 0, soa: 0, detailLink: '#' },
+            { name: '電子デバイス', absent: 0, tardy: 1, earlyLeave: 0, suspension: 0, soa: 0, detailLink: '#' }
+          ]
+        },
+        {
+          id: 'S005',
+          name: '田中 裕子',
+          nameFurigana: 'タナカ ユウコ',
+          department: '機械工学',
+          departmentCourse: '機械工学科・精密機械コース',
+          grade: '3年',
+          enrollmentYear: '2023',
+          enrollmentStatus: '在籍中',
+          totalAttendance: 90,
+          absentCount: 10,
+          subjects: [
+            { name: '機械力学', absent: 2, tardy: 0, earlyLeave: 0, suspension: 0,soa: 0, detailLink: '#' },
+            { name: '熱機関', absent: 1, tardy: 1, earlyLeave: 0, suspension: 0,soa: 0, detailLink: '#' }
+          ]
+        },
+        {
+          id: 'S006',
+          name: '伊藤 雅人',
+          nameFurigana: 'イトウ マサト',
+          department: '情報工学',
+          departmentCourse: '情報工学科・AI開発コース',
+          grade: '2年',
+          enrollmentYear: '2024',
+          enrollmentStatus: '在籍中',
+          totalAttendance: 96,
+          absentCount: 4,
+          subjects: [
+            { name: '線形代数', absent: 0, tardy: 0, earlyLeave: 0, suspension: 0,soa: 0, detailLink: '#' },
+            { name: 'Pythonプログラミング', absent: 1, tardy: 0, earlyLeave: 0, suspension: 0,soa: 0, detailLink: '#' }
+          ]
+        },
+        {
+          id: 'S007',
+          name: '渡辺 真奈',
+          nameFurigana: 'ワタナベ マナ',
+          department: '建築学',
+          departmentCourse: '建築学科・都市計画コース',
+          grade: '1年',
+          enrollmentYear: '2025',
+          enrollmentStatus: '在籍中',
+          totalAttendance: 99,
+          absentCount: 1,
+          subjects: [
+            { name: '建築製図', absent: 0, tardy: 0, earlyLeave: 0, suspension: 0, soa: 0, detailLink: '#' },
+            { name: '都市計画論', absent: 0, tardy: 0, earlyLeave: 0, suspension: 0, soa: 0, detailLink: '#' }
+          ]
+        },
+        {
+          id: 'S008',
+          name: '中村 浩司',
+          nameFurigana: 'ナカムラ コウジ',
+          department: '電気電子工学',
+          departmentCourse: '電気電子工学科・情報通信コース',
+          grade: '3年',
+          enrollmentYear: '2023',
+          enrollmentStatus: '在籍中',
+          totalAttendance: 85,
+          absentCount: 15,
+          subjects: [
+            { name: '信号処理', absent: 3, tardy: 1, earlyLeave: 0, suspension: 0, soa: 0, detailLink: '#' },
+            { name: '通信工学', absent: 2, tardy: 0, earlyLeave: 0, suspension: 0, soa: 0, detailLink: '#' }
+          ]
+        }
+      ];
+
+      // URLからクエリパラメータ（学生ID）を取得
+      const urlParams = new URLSearchParams(window.location.search);
+      const studentIdFromUrl = urlParams.get('id');
+
+      // 情報を表示するHTML要素への参照を取得
+      const studentIdInput = document.getElementById('student-id');
+      const departmentCourseInput = document.getElementById('department-course');
+      const gradeInput = document.getElementById('grade');
+      const enrollmentYearInput = document.getElementById('enrollment-year');
+      const nameInput = document.getElementById('name');
+      const nameFuriganaInput = document.getElementById('name-furigana');
+      const enrollmentStatusInput = document.getElementById('enrollment-status');
+      const totalAttendanceInput = document.getElementById('total-attendance');
+      const absentCountInput = document.getElementById('absent-count');
+      const subjectsTableBody = document.getElementById('subjects-table-body');
+
+      const studentInfoBlock = document.getElementById('student-info-block');
+      const attendanceSummaryBlock = document.getElementById('attendance-summary-block');
+      const subjectsDataBlock = document.getElementById('subjects-data-block');
+      const noStudentDataMessage = document.getElementById('no-student-data');
+
+      // URLから学生IDが取得できた場合
+      if (studentIdFromUrl) {
+        // サンプルデータから該当する学生を検索
+        const foundStudent = ALL_STUDENTS_DATA.find(student => student.id === studentIdFromUrl); // ここを修正
+
+        if (foundStudent) {
+          // 学生情報を各入力フィールドに設定
+          studentIdInput.value = foundStudent.id; // ここを修正
+          departmentCourseInput.value = foundStudent.departmentCourse;
+          gradeInput.value = foundStudent.grade;
+          enrollmentYearInput.value = foundStudent.enrollmentYear;
+          nameInput.value = foundStudent.name;
+          nameFuriganaInput.value = foundStudent.nameFurigana;
+          enrollmentStatusInput.value = foundStudent.enrollmentStatus;
+          totalAttendanceInput.value = foundStudent.totalAttendance;
+          absentCountInput.value = foundStudent.absentCount;
+
+          // 履修科目テーブルにデータを挿入
+          if (foundStudent.subjects && foundStudent.subjects.length > 0) {
+            foundStudent.subjects.forEach(subject => {
+              const row = subjectsTableBody.insertRow();
+              row.insertCell().textContent = subject.name;
+              row.insertCell().textContent = subject.absent;
+              row.insertCell().textContent = subject.tardy;
+              row.insertCell().textContent = subject.earlyLeave;
+              row.insertCell().textContent = subject.suspension;
+              row.insertCell().textContent = subject.soa;
+              const detailCell = row.insertCell();
+              const detailLink = document.createElement('a');
+              detailLink.href = subject.detailLink; // 実際の詳細リンクを設定
+              detailLink.textContent = '詳細';
+              detailCell.appendChild(detailLink);
+            });
+          } else {
+            // 科目がない場合のメッセージ
+            const row = subjectsTableBody.insertRow();
+            const cell = row.insertCell();
+            cell.colSpan = 7; // 全ての列を結合
+            cell.textContent = '履修科目はありません。';
+            cell.style.textAlign = 'center';
+            cell.style.color = '#777';
+          }
+
+          // 全ての情報ブロックを表示し、エラーメッセージを非表示にする
+          studentInfoBlock.style.display = 'block';
+          attendanceSummaryBlock.style.display = 'flex'; // attendance-infoはflexboxなのでflexに戻す
+          subjectsDataBlock.style.display = 'block';
+          noStudentDataMessage.style.display = 'none';
+
+        } else {
+          // 学生IDはURLにあるが、データが見つからない場合
+          studentInfoBlock.style.display = 'none';
+          attendanceSummaryBlock.style.display = 'none';
+          subjectsDataBlock.style.display = 'none';
+          noStudentDataMessage.style.display = 'block';
+        }
+      } else {
+        // URLに学生IDが全く含まれていない場合
+        studentInfoBlock.style.display = 'none';
+        attendanceSummaryBlock.style.display = 'none';
+        subjectsDataBlock.style.display = 'none';
+        noStudentDataMessage.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出席簿管理システム - 登録完了</title>
+    <link rel="stylesheet" href="../sinki_css/login.css"> <style>
+        /* このページ専用のスタイルがあればここに追加 */
+        .logingamen {
+            margin: 0 auto;
+            width: 900px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .message-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .resend-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: blue;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .resend-message {
+            color: green;
+            margin-top: 10px;
+            display: none; /* 初期状態では非表示 */
+        }
+        .login-button-container {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logingamen"> <img src="your_logo.png" alt="" class="logo">
+
+        <div class="message-container">
+            <h3>登録成功！</h3>
+            <p>ご登録ありがとうございます。ご入力いただいたメールアドレス宛に、パスワード（ハッシュ化前の仮パスワード）を記載した認証メールを送信いたしました。認証メールの仮パスワードを使用し、ログインしてください。</p>
+            <p>※迷惑メール設定によって届かない場合があります。（送信側メールアドレス）の設定をご確認ください。</p>
+
+            <div class="resend-section">
+                <a href="#" class="resend-link" id="resendEmailLink">メールを再送信</a>
+                <p class="resend-message" id="resendSuccessMessage">再送信しました</p>
+            </div>
+
+            <div class="login-button-container">
+                <button type="button" onclick="redirectToLogin()">ログイン画面へ</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 3秒後に「ログイン画面へ」ボタンを表示する処理
+        // スクリーンショットでは「3分経過後」とありますが、テストのために短縮しています。
+        // 本番環境では要件に合わせて調整してください。
+        setTimeout(function() {
+            // ここでログイン画面へのリダイレクト処理を行うか、
+            // 「ログイン画面へ」ボタンを活性化するなどの処理を追加します。
+            // 今回はボタン表示を想定し、既にボタンがあるので、特に何もしません。
+        }, 3 * 1000); // 3秒
+
+        document.getElementById('resendEmailLink').addEventListener('click', function(event) {
+            event.preventDefault(); // デフォルトのリンク動作を防止
+
+            // ここに認証メール再送信のためのサーバーサイドへのリクエスト処理を記述します。
+            // 例: fetch('/resend_verification_email', { method: 'POST' })
+            //     .then(response => response.json())
+            //     .then(data => {
+            //         if (data.success) {
+            //             document.getElementById('resendSuccessMessage').style.display = 'block';
+            //         } else {
+            //             alert('メールの再送信に失敗しました。');
+            //         }
+            //     })
+            //     .catch(error => {
+            //         console.error('Error:', error);
+            //         alert('メールの再送信中にエラーが発生しました。');
+            //     });
+
+            // 今回はダミーとして、メッセージを表示するだけ
+            document.getElementById('resendSuccessMessage').style.display = 'block';
+            console.log('認証メールを再送信しました（ダミー処理）');
+        });
+
+        function redirectToLogin() {
+            window.location.href = '/login.html'; // ログインページのパス
+        }
+    </script>
+</body>
+</html>
