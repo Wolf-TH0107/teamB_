@@ -149,11 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayStudents(students) {
         studentListDiv.innerHTML = ''; // 既存のリストをクリア
 
-        if (students.length === 0) {
-            studentListDiv.innerHTML = '<p class="no-results">該当する学生は見つかりませんでした。</p>';
-            return;
-        }
-
         students.forEach(student => {
             const studentItem = document.createElement('div');
             studentItem.classList.add('student-item');

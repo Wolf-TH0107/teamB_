@@ -1,129 +1,299 @@
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; /* 画面全体で中央寄せ */
-            background-color: #add8e6; /* 水色の背景 */
-        }
+/* syousaibotanngo.css に以下の内容を追記または修正してください */
 
-        .container {
-            width: 90%;
-            max-width: 600px; /* 最大幅を設定 */
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
-            position: relative; /* 戻るボタンの配置用 */
-        }
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
 
-        .main-title {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            /* スクリーンショットに合わせて枠線なし */
-        }
+:root {
+    /* カラーパレット */
+    --primary-color: #4A90E2; /* メインブランドカラー (青系) */
+    --secondary-color: #5AC8FA; /* アクセントカラー (水色系) */
+    --text-color: #333;
+    --light-text-color: #666;
+    --background-color: #F8F9FA; /* ページの背景 */
+    --card-background: #FFFFFF; /* カードの背景 */
+    --border-color: #E0E0E0;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.12);
+    --hover-bg: #F0F5FA; /* ホバー時の背景色 */
+}
 
-        .info-block {
-            /* スクリーンショットに合わせて枠線なし */
-            padding: 10px 0; /* 上下のパディングのみ */
-            margin-bottom: 20px;
-        }
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 上部に寄せる */
+    min-height: 100vh;
+    margin: 0;
+    padding: 30px 0; /* 上下のパディングを追加 */
+    color: var(--text-color);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased; /* フォントのアンチエイリアス */
+    -moz-osx-font-smoothing: grayscale; /* フォントのアンチエイリアス */
+}
 
-        .info-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
+.container {
+    background-color: var(--card-background);
+    padding: 40px;
+    border-radius: 16px; /* 角をさらに丸く */
+    box-shadow: 0 15px 40px var(--shadow-medium); /* より深みのある影 */
+    width: 100%;
+    max-width: 850px; /* 最大幅を少し広げる */
+    box-sizing: border-box;
+    text-align: center;
+    transition: all 0.3s ease-in-out; /* 全体的なトランジション */
+}
 
-        .info-row:last-child {
-            margin-bottom: 0;
-        }
+.main-title {
+    font-size: 2.2em;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+    font-weight: 700;
+    letter-spacing: 0.02em; /* 文字間を少し開ける */
+    position: relative;
+    padding-bottom: 10px;
+}
 
-        .info-row label {
-            min-width: 100px; /* ラベルの幅を固定 */
-            font-weight: bold;
-            flex-shrink: 0; /* 縮まないように */
-        }
+.main-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--secondary-color);
+    border-radius: 2px;
+}
 
-        .info-row input[type="text"] {
-            flex-grow: 1; /* 入力欄が残りのスペースを埋める */
-            padding: 5px;
-            border: 1px solid #aaa;
-            height: 25px; /* 高さを調整 */
-            box-sizing: border-box;
-            -webkit-appearance: none; /* iOS Safari のデフォルトスタイルを無効化 */
-            -moz-appearance: none;    /* Firefox のデフォルトスタイルを無効化 */
-            appearance: none;         /* 標準のデフォルトスタイルを無効化 */
-            background-color: #fff;   /* 背景色を白に */
-            outline: none;            /* フォーカス時のアウトラインを無効化 */
-        }
+.info-block, .attendance-records-block {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    text-align: left;
+    box-shadow: 0 5px 20px var(--shadow-light); /* 各ブロックの影 */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-        .attendance-records-block {
-            border: 1px solid #000; /* 黒い枠線 */
-            padding: 15px; /* テーブルの余白 */
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
+.info-block:hover, .attendance-records-block:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px var(--shadow-medium);
+}
 
-        .records-table-container {
-            max-height: 250px; /* スクロール可能にするための高さ */
-            overflow-y: auto; /* 縦スクロールを有効にする */
-            border: 1px solid #ddd; /* テーブルの枠線 */
-            background-color: #fff; /* テーブル背景 */
-        }
+.info-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px; /* 要素間のギャップ */
+}
+.info-row:last-child {
+    margin-bottom: 0;
+}
 
-        .records-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+.info-row label {
+    flex: 0 0 120px; /* ラベルの幅を固定 */
+    font-size: 1.05em;
+    color: var(--light-text-color);
+    font-weight: 500;
+    white-space: nowrap;
+    text-align: right; /* ラベルを右寄せ */
+}
 
-        .records-table th,
-        .records-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center; /* 中央寄せ */
-            white-space: nowrap; /* テキストの折り返し防止 */
-        }
+.info-row input[type="text"] {
+    flex-grow: 1;
+    padding: 14px 18px; /* パディングを増やす */
+    border: 1px solid var(--border-color);
+    border-radius: 10px; /* 角をさらに丸く */
+    font-size: 1.1em;
+    background-color: #FDFDFD; /* わずかに異なる背景色 */
+    color: var(--text-color);
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: default; /* 読み取り専用なのでカーソルを変更 */
+}
 
-        .records-table th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-            position: sticky; /* ヘッダーを固定 */
-            top: 0;
-            z-index: 1; /* スクロールしても手前に表示 */
-        }
+.records-table-container {
+    overflow-x: auto; /* テーブルの横スクロール */
+    border-radius: 10px; /* コンテナにも角丸 */
+    border: 1px solid var(--border-color); /* 枠線 */
+}
 
-        /* 各列の幅を調整 (スクリーンショットの見た目に合わせて調整) */
-        .records-table th:nth-child(1), .records-table td:nth-child(1) { width: 18%; } /* 授業日 */
-        .records-table th:nth-child(2), .records-table td:nth-child(2) { width: 10%; } /* コマ */
-        .records-table th:nth-child(3), .records-table td:nth-child(3) { width: 15%; } /* 出欠 */
-        .records-table th:nth-child(4), .records-table td:nth-child(4) { width: 25%; } /* 事由 */
-        .records-table th:nth-child(5), .records-table td:nth-child(5) { width: 16%; } /* 更新者 */
-        .records-table th:nth-child(6), .records-table td:nth-child(6) { width: 16%; } /* 更新日 */
+.records-table {
+    width: 100%;
+    border-collapse: separate; /* border-radiusのためにseparate */
+    border-spacing: 0; /* border-collapse: separate; のための調整 */
+    margin: 0;
+    min-width: 700px; /* テーブルが狭くなったときにスクロールバーが出るように最小幅を設定 */
+}
 
+.records-table th, .records-table td {
+    padding: 15px 20px; /* パディングを増やす */
+    text-align: center;
+    font-size: 0.95em;
+    border-bottom: 1px solid var(--border-color); /* 行間の区切り */
+}
 
-        .back-button-container {
-            text-align: center;
-            margin-top: 20px;
-        }
+.records-table thead th {
+    background-color: var(--primary-color); /* ヘッダーの背景色 */
+    color: white;
+    font-weight: 600;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
 
-        .back-button {
-            background-color: #e0e0e0;
-            color: #333;
-            padding: 10px 25px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            text-decoration: none;
-            display: inline-block;
-            transition: background-color 0.3s ease;
-        }
+.records-table thead th:first-child {
+    border-top-left-radius: 10px; /* ヘッダーの左上角丸 */
+}
 
-        .back-button:hover {
-            background-color: #d0d0d0;
-        }
+.records-table thead th:last-child {
+    border-top-right-radius: 10px; /* ヘッダーの右上角丸 */
+}
+
+.records-table tbody tr:nth-child(even) {
+    background-color: #FBFBFD; /* 偶数行の背景 */
+}
+
+.records-table tbody tr:hover {
+    background-color: var(--hover-bg); /* ホバーエフェクト */
+    transition: background-color 0.2s ease;
+}
+
+.records-table tbody tr:last-child td {
+    border-bottom: none; /* 最後の行の下線はなし */
+}
+
+/* 戻るボタンのスタイル */
+.back-button-container {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.back-button {
+    display: inline-flex; /* Flexboxを使ってアイコンとテキストを中央揃え */
+    align-items: center;
+    gap: 8px; /* アイコンとテキストの間隔 */
+    padding: 15px 35px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 20px rgba(74, 144, 226, 0.3); /* ボタンの影 */
+}
+
+.back-button::before {
+    content: '←'; /* 戻るアイコン */
+    font-size: 1.2em;
+}
+
+.back-button:hover {
+    background-color: #3A7BCD; /* ホバー時の色 */
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(74, 144, 226, 0.4);
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    body {
+        padding: 20px 0;
+        align-items: stretch; /* モバイルでは上から下に広がるように */
+    }
+
+    .container {
+        padding: 25px;
+        margin: 0 15px; /* 左右に余白 */
+        border-radius: 12px;
+        box-shadow: 0 10px 30px var(--shadow-light);
+    }
+
+    .main-title {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+    }
+
+    .main-title::after {
+        width: 40px;
+        height: 3px;
+    }
+
+    .info-block, .attendance-records-block {
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+    }
+
+    .info-row {
+        flex-direction: column; /* 情報を縦に並べる */
+        align-items: flex-start; /* 左寄せ */
+        margin-bottom: 15px;
+        gap: 8px;
+    }
+
+    .info-row label {
+        flex: none; /* フレックスプロパティを解除 */
+        width: 100%; /* 全幅 */
+        text-align: left; /* 左寄せ */
+        margin-bottom: 5px; /* ラベルと入力フィールドの間に余白 */
+        font-size: 1em;
+    }
+
+    .info-row input[type="text"] {
+        width: 100%; /* 全幅 */
+        padding: 10px 12px;
+        font-size: 1em;
+        border-radius: 8px;
+    }
+
+    .records-table {
+        min-width: 550px; /* モバイルでのテーブルの最小幅を調整 */
+    }
+
+    .records-table th, .records-table td {
+        padding: 10px 8px;
+        font-size: 0.8em; /* フォントサイズを小さく */
+    }
+
+    .back-button {
+        padding: 12px 25px;
+        font-size: 1em;
+        border-radius: 8px;
+    }
+}
+
+/* さらに小さなデバイス向けの調整 */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+
+    .main-title {
+        font-size: 1.6em;
+        margin-bottom: 25px;
+    }
+
+    .info-block, .attendance-records-block {
+        padding: 15px;
+    }
+
+    .records-table {
+        min-width: 400px; /* さらに小さなデバイスでの最小幅 */
+    }
+
+    .records-table th, .records-table td {
+        padding: 8px 5px;
+        font-size: 0.75em;
+    }
+
+    .back-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}

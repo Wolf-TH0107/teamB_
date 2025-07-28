@@ -207,6 +207,113 @@
       margin-top: 30px;
       display: none; /* 初期状態では非表示 */
     }
+
+      /* スマートフォン向けの調整 (例: 画面幅が768px以下の場合) */
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px; /* パディングを小さくする */
+      margin: 20px; /* 左右に余白を持たせる */
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); /* シャドウを控えめに */
+    }
+
+    .main-title {
+      font-size: 1.8em; /* タイトルフォントサイズを調整 */
+      margin-bottom: 25px;
+    }
+
+    .info-block, .attendance-info, .subjects-block {
+      padding: 20px; /* ブロック内のパディングを調整 */
+      margin-bottom: 20px;
+    }
+
+    .info-row {
+      flex-direction: column; /* 情報を縦に並べる */
+      align-items: flex-start; /* 左寄せにする */
+      margin-bottom: 15px;
+    }
+
+    .info-row label {
+      flex: none; /* flexの指定を解除 */
+      margin-right: 0;
+      margin-bottom: 8px; /* ラベルと入力フィールドの間に余白 */
+      width: 100%; /* ラベルを全幅にする */
+    }
+
+    .info-row input[type="text"] {
+      width: 100%; /* 入力フィールドを全幅にする */
+      padding: 10px 12px; /* パディングを調整 */
+      font-size: 0.95em; /* フォントサイズを調整 */
+    }
+
+    .info-row #grade, .info-row #enrollment-year {
+      width: 100%; /* スマホでは全幅に */
+      flex-grow: 1; /* 全幅を使う */
+    }
+    .info-row label[for="enrollment-year"] {
+      margin-left: 0; /* 左マージンを解除 */
+      margin-top: 15px; /* 上に少し余白 */
+    }
+
+    .attendance-info {
+      flex-direction: column; /* 出席情報を縦に並べる */
+      gap: 15px; /* アイテム間のギャップを調整 */
+      padding: 20px;
+    }
+
+    .attendance-item {
+      padding: 12px 0; /* パディングを調整 */
+    }
+
+    .attendance-item input[type="text"] {
+      font-size: 1.2em; /* フォントサイズを調整 */
+      width: auto; /* 幅指定を解除 */
+    }
+    .attendance-item .percentage {
+      font-size: 1em; /* フォントサイズを調整 */
+    }
+
+    .subjects-block h3 {
+      font-size: 1.3em; /* フォントサイズを調整 */
+      margin-bottom: 20px;
+    }
+
+    .subjects-table th, .subjects-table td {
+      padding: 10px 8px; /* テーブルのパディングを小さくする */
+      font-size: 0.85em; /* フォントサイズを小さくする */
+    }
+
+    /* 必要であれば、テーブルの横スクロールを強制することも検討 */
+    .subjects-table-container {
+      -webkit-overflow-scrolling: touch; /* iOSのスクロールを滑らかに */
+    }
+
+    .back-button {
+      padding: 12px 25px; /* ボタンのパディングを調整 */
+      font-size: 0.95em; /* ボタンのフォントサイズを調整 */
+    }
+  }
+
+  /* さらに小さなデバイス向けの調整 (例: 画面幅が480px以下の場合) */
+  @media (max-width: 480px) {
+    .container {
+      padding: 15px;
+      margin: 15px;
+    }
+
+    .main-title {
+      font-size: 1.6em;
+      margin-bottom: 20px;
+    }
+
+    .info-block, .attendance-info, .subjects-block {
+      padding: 15px;
+    }
+
+    .subjects-table th, .subjects-table td {
+      padding: 8px 5px;
+      font-size: 0.8em;
+    }
+  }
   </style>
 </head>
 <body>

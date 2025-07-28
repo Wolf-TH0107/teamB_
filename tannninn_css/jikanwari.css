@@ -77,6 +77,7 @@ tbody td:first-child {
     font-weight: 500;
     color: #364e6e;
     transition: background-color 0.2s ease;
+    m
 }
 
 .empty-cell {
