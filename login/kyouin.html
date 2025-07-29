@@ -4,48 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>システムユーザー登録 - 出席簿管理システム</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #007bff; /* Blue for main actions */
+            --secondary-color: #28a745; /* Green for success/register */
+            --accent-color: #6c757d; /* Gray for subtle elements */
+            --background-light: #f8faff; /* Very light blue for subtle backgrounds */
+            --background-body: #f0f2f5; /* Page background */
+            --text-dark: #2c3e50; /* Dark text for headings */
+            --text-medium: #555; /* Medium text for labels */
+            --text-light: #666; /* Lighter text for links */
+            --border-color: #e0e0e0; /* Light border */
+            --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.05);
+            --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.12);
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+        }
+
         body {
-            font-family: 'Noto Sans JP', sans-serif; /* Modern Japanese font */
-            background-color: #f0f2f5; /* Light gray background for modern feel */
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--background-body);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            color: #333;
+            color: var(--text-dark);
             line-height: 1.6;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased; /* Smoother font rendering */
+            -moz-osx-font-smoothing: grayscale; /* Smoother font rendering */
         }
 
         .register-container {
             background-color: #ffffff;
-            padding: 40px 50px; /* Increased padding, slightly wider side padding */
-            border-radius: 12px; /* More rounded corners */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Softer, larger shadow */
+            padding: 40px 50px;
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-medium);
             width: 100%;
-            max-width: 580px; /* Slightly wider container */
+            max-width: 580px;
             box-sizing: border-box;
+            margin: 20px; /* Add margin for mobile responsiveness */
         }
 
         h2 {
-            font-size: 2em; /* Larger heading */
-            color: #2c3e50;
-            margin-bottom: 35px; /* More space below heading */
+            font-size: 2em;
+            color: var(--text-dark);
+            margin-bottom: 35px;
             font-weight: 700;
             text-align: center;
         }
 
         .form-group {
-            margin-bottom: 20px; /* Consistent spacing between form groups */
+            margin-bottom: 20px;
             text-align: left;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px; /* Space between label and input */
-            font-size: 1em;
-            color: #555;
+            margin-bottom: 8px;
+            font-size: 0.95em; /* Slightly smaller label font */
+            color: var(--text-medium);
             font-weight: 500;
         }
 
@@ -54,72 +75,91 @@
         .form-group input[type="password"],
         .form-group select {
             width: 100%;
-            padding: 14px 15px; /* Consistent padding */
-            border: 1px solid #e0e0e0; /* Lighter border */
-            border-radius: 8px; /* More rounded input fields */
+            padding: 14px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-sm);
             font-size: 1.05em;
             box-sizing: border-box;
-            background-color: #fcfcfc; /* Slightly off-white background for inputs */
+            background-color: #ffffff; /* Explicitly white */
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            appearance: none; /* Reset default select styles */
         }
 
         .form-group input:focus,
         .form-group select:focus {
-            border-color: #007bff;
+            border-color: var(--primary-color);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Subtle focus shadow */
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15); /* Softer focus shadow */
         }
+
+        /* Styling for the select dropdown arrow */
+        .form-group select {
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%236c757d%22%20d%3D%22M287%2C114.7L159.2%2C242.5c-4.4%2C4.4-10.4%2C6.9-16.7%2C6.9c-6.3%2C0-12.3-2.5-16.7-6.9L5.4%2C114.7c-4.4-4.4-6.9-10.4-6.9-16.7s2.5-12.3%2C6.9-16.7c4.4-4.4%2C10.4-6.9%2C16.7-6.9h255.3c6.3%2C0%2C12.3%2C2.5%2C16.7%2C6.9c4.4%2C4.4%2C6.9%2C10.4%2C6.9%2C16.7S291.4%2C110.3%2C287%2C114.7z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 12px; /* Smaller, subtle arrow */
+            padding-right: 40px; /* Space for the custom arrow */
+        }
+
 
         /* Radio buttons styling for "教員の役割" */
-        .form-group input[type="radio"] {
-            width: auto; /* Override 100% width for radio buttons */
-            margin-right: 8px; /* Space between radio button and its label */
-            vertical-align: middle; /* Align with text */
-            height: 18px; /* Make radio buttons a bit larger */
+        .radio-group {
+            display: flex; /* Use flexbox for radio buttons */
+            gap: 25px; /* Space between radio button options */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+        .radio-group input[type="radio"] {
+            width: auto;
+            margin-right: 8px;
+            vertical-align: middle;
+            height: 18px;
             width: 18px;
-            accent-color: #007bff; /* Accent color for radio buttons */
+            accent-color: var(--primary-color);
+            cursor: pointer;
         }
 
-        .form-group label[for="roleHomeroom"],
-        .form-group label[for="roleInstructor"] {
-            display: inline-block; /* Display labels inline with radios */
-            margin-right: 20px; /* Space between radio groups */
-            font-weight: normal; /* Reset font weight for radio labels */
-            color: #333;
+        .radio-group label {
+            display: inline-flex; /* Use inline-flex for alignment with radio */
+            align-items: center; /* Vertically align text with radio button */
+            margin-bottom: 0; /* Remove default label margin */
+            font-weight: 400; /* Normal weight for radio labels */
+            color: var(--text-dark); /* Darker text for clarity */
+            cursor: pointer;
         }
 
         #teacherRoleSelection {
-            border: 1px dashed #cceeff; /* Dotted border for this section */
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 25px; /* Space above this section */
-            margin-bottom: 25px; /* Space below this section */
-            background-color: #f8faff; /* Lightest blue background */
+            border: 1px dashed #a8d6ff; /* Lighter dashed border */
+            padding: 18px; /* Slightly more padding */
+            border-radius: var(--border-radius-sm);
+            margin-top: 25px;
+            margin-bottom: 25px;
+            background-color: var(--background-light); /* Lightest blue background */
+            box-shadow: var(--shadow-light); /* Subtle shadow for this section */
         }
 
-        #teacherRoleSelection label:first-of-type { /* Label "教員の役割" */
+        #teacherRoleSelection > label:first-of-type { /* Target the "教員の役割" label */
             font-weight: 500;
             margin-bottom: 12px;
-            color: #333;
+            color: var(--text-dark);
         }
 
         button[type="submit"] {
             width: 100%;
-            padding: 15px; /* More padding for a substantial button */
-            background-color: #28a745; /* Green for registration button */
+            padding: 15px;
+            background-color: var(--secondary-color);
             color: white;
             border: none;
-            border-radius: 8px; /* Rounded button corners */
-            font-size: 1.15em; /* Larger font size */
+            border-radius: var(--border-radius-sm);
+            font-size: 1.15em;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 30px; /* Space above button */
+            margin-top: 30px;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2); /* Subtle shadow for button */
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
         }
 
         button[type="submit"]:hover {
-            background-color: #218838;
+            background-color: #218838; /* Darker green on hover */
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
         }
@@ -128,19 +168,78 @@
             text-align: center;
             margin-top: 30px;
             font-size: 0.95em;
-            color: #666;
+            color: var(--text-light);
         }
 
         .login-link a {
-            color: #007bff;
+            color: var(--primary-color);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
         }
 
         .login-link a:hover {
             color: #0056b3;
             text-decoration: underline;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 600px) {
+            .register-container {
+                padding: 30px 25px; /* Adjust padding for smaller screens */
+                margin: 15px; /* Ensure margin around the container */
+            }
+
+            h2 {
+                font-size: 1.7em; /* Smaller heading on mobile */
+                margin-bottom: 30px;
+            }
+
+            .form-group label {
+                font-size: 0.9em; /* Slightly smaller label text */
+            }
+
+            .form-group input[type="text"],
+            .form-group input[type="email"],
+            .form-group input[type="password"],
+            .form-group select {
+                padding: 12px 15px; /* Slightly less padding for inputs */
+                font-size: 1em; /* Adjust font size */
+            }
+
+            .form-group select {
+                background-position: right 10px center; /* Adjust arrow position */
+                padding-right: 35px; /* Adjust padding for arrow */
+            }
+
+            .radio-group {
+                flex-direction: column; /* Stack radio options vertically */
+                gap: 12px; /* Reduce gap when stacked */
+            }
+
+            #teacherRoleSelection {
+                padding: 15px; /* Adjust padding */
+            }
+
+            button[type="submit"] {
+                padding: 14px; /* Adjust button padding */
+                font-size: 1.05em; /* Adjust button font size */
+            }
+
+            .login-link {
+                font-size: 0.9em; /* Smaller login link text */
+            }
+        }
+
+        @media (max-width: 400px) {
+            .register-container {
+                padding: 25px 20px;
+                margin: 10px;
+            }
+            h2 {
+                font-size: 1.5em;
+                margin-bottom: 25px;
+            }
         }
     </style>
 </head>
@@ -179,11 +278,15 @@
 
             <div id="teacherRoleSelection" class="form-group" style="display: none;">
                 <label>教員の役割:</label>
-                <div>
-                    <input type="radio" id="roleHomeroom" name="teacherRole" value="homeroom">
-                    <label for="roleHomeroom">担任</label>
-                    <input type="radio" id="roleInstructor" name="teacherRole" value="instructor">
-                    <label for="roleInstructor">講師</label>
+                <div class="radio-group">
+                    <label for="roleHomeroom">
+                        <input type="radio" id="roleHomeroom" name="teacherRole" value="homeroom">
+                        担任
+                    </label>
+                    <label for="roleInstructor">
+                        <input type="radio" id="roleInstructor" name="teacherRole" value="instructor">
+                        講師
+                    </label>
                 </div>
             </div>
 
@@ -203,8 +306,17 @@
             const teacherRoleSelectionDiv = document.getElementById('teacherRoleSelection');
             if (roleSelect.value === 'teacher') {
                 teacherRoleSelectionDiv.style.display = 'block';
+                // Make radio buttons required only when visible
+                document.getElementById('roleHomeroom').setAttribute('required', 'required');
+                document.getElementById('roleInstructor').setAttribute('required', 'required');
             } else {
                 teacherRoleSelectionDiv.style.display = 'none';
+                // Remove required attribute when hidden
+                document.getElementById('roleHomeroom').removeAttribute('required');
+                document.getElementById('roleInstructor').removeAttribute('required');
+                // Uncheck radios when hidden
+                document.getElementById('roleHomeroom').checked = false;
+                document.getElementById('roleInstructor').checked = false;
             }
         }
 

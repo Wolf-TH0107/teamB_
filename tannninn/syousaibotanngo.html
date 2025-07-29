@@ -4,26 +4,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../tannninn_css/syousaibotanngo.css" />
-    <title>詳細ボタンを押したときの画面</title>
+    <title>科目別出席詳細</title> <style>
+        /* ここに syousaibotanngo.css の内容を直接貼り付けるか、外部CSSファイルを適切にリンクしてください */
+        /* 例: あなたの syousaibotanngo.css の内容 */
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+            line-height: 1.6;
+        }
 
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 900px; /* 少し幅を広げました */
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .main-title {
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 35px;
+            font-weight: 700;
+        }
+
+        .info-block {
+            background-color: #f8faff;
+            border: 1px solid #e0e6f0;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-row label {
+            flex: 0 0 140px;
+            margin-right: 20px;
+            font-size: 1em;
+            color: #555;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .info-row input[type="text"] {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1.05em;
+            background-color: #ffffff;
+            color: #333;
+            box-sizing: border-box;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .attendance-records-block {
+            background-color: #f8faff;
+            border: 1px solid #e0e6f0;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .records-table-container {
+            overflow-x: auto;
+        }
+
+        .records-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .records-table th, .records-table td {
+            padding: 12px 15px;
+            border: 1px solid #e0e6f0;
+            text-align: center;
+            font-size: 0.95em;
+            white-space: nowrap; /* テーブルのセル内容が改行されないように */
+        }
+
+        .records-table thead th {
+            background-color: #eaf1f8;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .records-table tbody tr:nth-child(even) {
+            background-color: #fcfdfe;
+        }
+
+        .records-table tbody tr:hover {
+            background-color: #eef5fc;
+        }
+
+        .back-button-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 14px 30px;
+            background-color: #e9ecef;
+            color: #495057;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 1.05em;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #dae0e5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* レスポンシブデザインの追加 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+            .main-title {
+                font-size: 1.8em;
+            }
+            .info-block {
+                padding: 20px;
+            }
+            .info-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .info-row label {
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
+            .records-table th, .records-table td {
+                padding: 8px 10px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                margin: 10px;
+            }
+            .main-title {
+                font-size: 1.5em;
+            }
+            .info-block {
+                padding: 15px;
+            }
+            .records-table th, .records-table td {
+                padding: 6px 8px;
+                font-size: 0.8em;
+            }
+        }
+    </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="main-title">詳細ボタンを押したときの画面</div>
-
-        <div class="info-block">
+        <div class="main-title">科目別出席詳細</div> <div class="info-block">
             <div class="info-row">
-                <label for="student-id">学籍番号</label>
-                <input type="text" id="student-id" value="[S12345]" readonly>
+                <label for="student-id-display">学籍番号</label>
+                <input type="text" id="student-id-display" value="" readonly>
             </div>
             <div class="info-row">
-                <label for="student-name">名前</label>
-                <input type="text" id="student-name" value="[山田 太郎]" readonly>
+                <label for="student-name-display">名前</label>
+                <input type="text" id="student-name-display" value="" readonly>
             </div>
             <div class="info-row">
-                <label for="subject-name">科目名</label>
-                <input type="text" id="subject-name" value="[プログラミング基礎]" readonly>
+                <label for="subject-name-display">科目名</label>
+                <input type="text" id="subject-name-display" value="" readonly>
             </div>
         </div>
 
@@ -40,88 +218,342 @@
                             <th>更新日</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>2024/04/01</td>
-                            <td>1</td>
-                            <td>出席</td>
-                            <td>-</td>
-                            <td>教員A</td>
-                            <td>2024/04/01</td>
-                        </tr>
-                        <tr>
-                            <td>2024/04/08</td>
-                            <td>1</td>
-                            <td>欠席</td>
-                            <td>体調不良</td>
-                            <td>教員A</td>
-                            <td>2024/04/08</td>
-                        </tr>
-                        <tr>
-                            <td>2024/04/15</td>
-                            <td>1</td>
-                            <td>遅刻</td>
-                            <td>交通機関の遅延</td>
-                            <td>教員A</td>
-                            <td>2024/04/15</td>
-                        </tr>
-                        <tr>
-                            <td>2024/04/22</td>
-                            <td>1</td>
-                            <td>出席</td>
-                            <td>-</td>
-                            <td>教員A</td>
-                            <td>2024/04/22</td>
-                        </tr>
-                        <tr>
-                            <td>2024/04/29</td>
-                            <td>1</td>
-                            <td>出席</td>
-                            <td>-</td>
-                            <td>教員B</td>
-                            <td>2024/04/29</td>
-                        </tr>
-                         <tr>
-                            <td>2024/05/06</td>
-                            <td>1</td>
-                            <td>出席</td>
-                            <td>-</td>
-                            <td>教員B</td>
-                            <td>2024/05/06</td>
-                        </tr>
-                        <tr>
-                            <td>2024/05/13</td>
-                            <td>1</td>
-                            <td>出席</td>
-                            <td>-</td>
-                            <td>教員B</td>
-                            <td>2024/05/13</td>
-                        </tr>
-                        <tr>
-                            <td>2024/05/20</td>
-                            <td>1</td>
-                            <td>出席</td>
-                            <td>-</td>
-                            <td>教員C</td>
-                            <td>2024/05/20</td>
-                        </tr>
-                        <tr>
-                            <td>2024/05/27</td>
-                            <td>1</td>
-                            <td>早退</td>
-                            <td>家庭の都合</td>
-                            <td>教員C</td>
-                            <td>2024/05/27</td>
-                        </tr>
-                    </tbody>
+                    <tbody id="attendance-detail-table-body">
+                        </tbody>
                 </table>
+                <div id="no-attendance-data" style="text-align: center; color: #dc3545; margin-top: 20px; display: none;">
+                    この科目に関する詳細な出席情報はありません。
+                </div>
             </div>
         </div>
 
         <div class="back-button-container">
-            <a href="gakuseijyouhousyousai.html" class="back-button">戻る</a>
+            <a href="#" id="back-to-student-details" class="back-button">学生詳細に戻る</a>
         </div>
     </div>
 
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    // あなたの提供したALL_STUDENTS_DATAを基に、科目ごとの詳細な出席データ（attendanceDetails）を追加したものです。
+    // 実際のアプリケーションでは、この詳細データはデータベースなどから取得される想定です。
+    const ALL_STUDENTS_ATTENDANCE_DETAILS = [
+        {
+            id: 'S001',
+            name: '山田 太郎',
+            nameFurigana: 'ヤマダ タロウ',
+            department: '情報工学',
+            departmentCourse: '情報工学科・ソフトウェア開発コース',
+            grade: '3年',
+            enrollmentYear: '2023',
+            enrollmentStatus: '在籍中',
+            totalAttendance: 95,
+            absentCount: 5,
+            subjects: [
+                {
+                    name: 'データ構造とアルゴリズム',
+                    absent: 1, tardy: 0, earlyLeave: 0, suspension: 0,
+                    attendanceDetails: [ // 詳細な出席データを追加
+                        { date: '2024/04/01', koma: 1, status: '出席', reason: '-', updater: '教員A', updateDate: '2024/04/01' },
+                        { date: '2024/04/08', koma: 1, status: '欠席', reason: '体調不良', updater: '教員A', updateDate: '2024/04/08' },
+                        { date: '2024/04/15', koma: 1, status: '出席', reason: '-', updater: '教員A', updateDate: '2024/04/15' },
+                        { date: '2024/04/22', koma: 1, status: '出席', reason: '-', updater: '教員A', updateDate: '2024/04/22' }
+                    ]
+                },
+                {
+                    name: 'オブジェクト指向プログラミング',
+                    absent: 0, tardy: 1, earlyLeave: 0, suspension: 0,
+                    attendanceDetails: [ // 詳細な出席データを追加
+                        { date: '2024/04/02', koma: 2, status: '出席', reason: '-', updater: '教員B', updateDate: '2024/04/02' },
+                        { date: '2024/04/09', koma: 2, status: '遅刻', reason: '交通機関の乱れ', updater: '教員B', updateDate: '2024/04/09' },
+                        { date: '2024/04/16', koma: 2, status: '出席', reason: '-', updater: '教員B', updateDate: '2024/04/16' }
+                    ]
+                },
+                {
+                    name: 'Webアプリケーション開発',
+                    absent: 2, tardy: 0, earlyLeave: 1, suspension: 0,
+                    attendanceDetails: [ // 詳細な出席データを追加
+                        { date: '2024/04/03', koma: 3, status: '出席', reason: '-', updater: '教員C', updateDate: '2024/04/03' },
+                        { date: '2024/04/10', koma: 3, status: '欠席', reason: '家庭の事情', updater: '教員C', updateDate: '2024/04/10' },
+                        { date: '2024/04/17', koma: 3, status: '早退', reason: '体調不良', updater: '教員C', updateDate: '2024/04/17' },
+                        { date: '2024/04/24', koma: 3, status: '欠席', reason: '私用', updater: '教員C', updateDate: '2024/04/24' }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'S002',
+            name: '鈴木 花子',
+            nameFurigana: 'スズキ ハナコ',
+            department: '建築学',
+            departmentCourse: '建築学科・意匠設計コース',
+            grade: '2年',
+            enrollmentYear: '2024',
+            enrollmentStatus: '在籍中',
+            totalAttendance: 88,
+            absentCount: 12,
+            subjects: [
+                {
+                    name: '建築構造力学',
+                    absent: 3, tardy: 2, earlyLeave: 0, suspension: 0,
+                    attendanceDetails: [
+                        { date: '2024/04/04', koma: 1, status: '欠席', reason: '発熱', updater: '教員D', updateDate: '2024/04/04' },
+                        { date: '2024/04/11', koma: 1, status: '遅刻', reason: '寝坊', updater: '教員D', updateDate: '2024/04/11' },
+                        { date: '2024/04/18', koma: 1, status: '出席', reason: '-', updater: '教員D', updateDate: '2024/04/18' }
+                    ]
+                },
+                {
+                    name: '建築史',
+                    absent: 2, tardy: 0, earlyLeave: 0, suspension: 0,
+                    attendanceDetails: [
+                        { date: '2024/04/05', koma: 2, status: '欠席', reason: '忌引き', updater: '教員E', updateDate: '2024/04/05' },
+                        { date: '2024/04/12', koma: 2, status: '欠席', reason: '忌引き', updater: '教員E', updateDate: '2024/04/12' }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'S003',
+            name: '佐藤 健太',
+            nameFurigana: 'サトウ ケンタ',
+            department: '情報工学',
+            departmentCourse: '情報工学科・ネットワークセキュリティコース',
+            grade: '1年',
+            enrollmentYear: '2025',
+            enrollmentStatus: '在籍中',
+            totalAttendance: 98,
+            absentCount: 2,
+            subjects: [
+                {
+                    name: '情報科学基礎',
+                    absent: 0, tardy: 0, earlyLeave: 0, suspension: 0,
+                    attendanceDetails: [
+                        { date: '2024/04/01', koma: 1, status: '出席', reason: '-', updater: '教員F', updateDate: '2024/04/01' },
+                        { date: '2024/04/08', koma: 1, status: '出席', reason: '-', updater: '教員F', updateDate: '2024/04/08' }
+                    ]
+                },
+                {
+                    name: 'プログラミング入門',
+                    absent: 0, tardy: 0, earlyLeave: 0, suspension: 0,
+                    attendanceDetails: [
+                        { date: '2024/04/02', koma: 2, status: '出席', reason: '-', updater: '教員G', updateDate: '2024/04/02' },
+                        { date: '2024/04/09', koma: 2, status: '出席', reason: '-', updater: '教員G', updateDate: '2024/04/09' }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'S004',
+            name: '高橋 美咲',
+            nameFurigana: 'タカハシ ミサキ',
+            department: '電気電子工学',
+            departmentCourse: '電気電子工学科・電力システムコース',
+            grade: '4年',
+            enrollmentYear: '2022',
+            enrollmentStatus: '在籍中',
+            totalAttendance: 92,
+            absentCount: 8,
+            subjects: [
+                {
+                    name: '電気回路',
+                    absent: 1, tardy: 0, earlyLeave: 0, suspension: 0,
+                    attendanceDetails: [
+                        { date: '2024/04/03', koma: 3, status: '出席', reason: '-', updater: '教員H', updateDate: '2024/04/03' },
+                        { date: '2024/04/10', koma: 3, status: '欠席', reason: '私用', updater: '教員H', updateDate: '2024/04/10' }
+                    ]
+                },
+                {
+                    name: '電子デバイス',
+                    absent: 0, tardy: 1, earlyLeave: 0, suspension: 0,
+                    attendanceDetails: [
+                        { date: '2024/04/04', koma: 4, status: '出席', reason: '-', updater: '教員I', updateDate: '2024/04/04' },
+                        { date: '2024/04/11', koma: 4, status: '遅刻', reason: '交通機関の乱れ', updater: '教員I', updateDate: '2024/04/11' }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'S005',
+            name: '田中 裕子',
+            nameFurigana: 'タナカ ユウコ',
+            department: '機械工学',
+            departmentCourse: '機械工学科・精密機械コース',
+            grade: '3年',
+            enrollmentYear: '2023',
+            enrollmentStatus: '在籍中',
+            totalAttendance: 90,
+            absentCount: 10,
+            subjects: [
+                {
+                    name: '機械力学',
+                    absent: 2, tardy: 0, earlyLeave: 0, suspension: 0,
+                    attendanceDetails: [
+                        { date: '2024/04/05', koma: 1, status: '欠席', reason: '体調不良', updater: '教員J', updateDate: '2024/04/05' },
+                        { date: '2024/04/12', koma: 1, status: '出席', reason: '-', updater: '教員J', updateDate: '2024/04/12' },
+                        { date: '2024/04/19', koma: 1, status: '欠席', reason: '私用', updater: '教員J', updateDate: '2024/04/19' }
+                    ]
+                },
+                {
+                    name: '熱機関',
+                    absent: 1, tardy: 1, earlyLeave: 0, suspension: 0,
+                    attendanceDetails: [
+                        { date: '2024/04/08', koma: 2, status: '出席', reason: '-', updater: '教員K', updateDate: '2024/04/08' },
+                        { date: '2024/04/15', koma: 2, status: '遅刻', reason: '寝坊', updater: '教員K', updateDate: '2024/04/15' },
+                        { date: '2024/04/22', koma: 2, status: '欠席', reason: '家庭の事情', updater: '教員K', updateDate: '2024/04/22' }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'S006',
+            name: '伊藤 雅人',
+            nameFurigana: 'イトウ マサト',
+            department: '情報工学',
+            departmentCourse: '情報工学科・AI開発コース',
+            grade: '2年',
+            enrollmentYear: '2024',
+            enrollmentStatus: '在籍中',
+            totalAttendance: 96,
+            absentCount: 4,
+            subjects: [
+                {
+                    name: '線形代数',
+                    absent: 0, tardy: 0, earlyLeave: 0, suspension: 0,
+                    attendanceDetails: [
+                        { date: '2024/04/09', koma: 3, status: '出席', reason: '-', updater: '教員L', updateDate: '2024/04/09' }
+                    ]
+                },
+                {
+                    name: 'Pythonプログラミング',
+                    absent: 1, tardy: 0, earlyLeave: 0, suspension: 0,
+                    attendanceDetails: [
+                        { date: '2024/04/10', koma: 4, status: '出席', reason: '-', updater: '教員M', updateDate: '2024/04/10' },
+                        { date: '2024/04/17', koma: 4, status: '欠席', reason: '私用', updater: '教員M', updateDate: '2024/04/17' }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'S007',
+            name: '渡辺 真奈',
+            nameFurigana: 'ワタナベ マナ',
+            department: '建築学',
+            departmentCourse: '建築学科・都市計画コース',
+            grade: '1年',
+            enrollmentYear: '2025',
+            enrollmentStatus: '在籍中',
+            totalAttendance: 99,
+            absentCount: 1,
+            subjects: [
+                {
+                    name: '建築製図',
+                    absent: 0, tardy: 0, earlyLeave: 0, suspension: 0,
+                    attendanceDetails: [
+                        { date: '2024/04/11', koma: 1, status: '出席', reason: '-', updater: '教員N', updateDate: '2024/04/11' }
+                    ]
+                },
+                {
+                    name: '都市計画論',
+                    absent: 0, tardy: 0, earlyLeave: 0, suspension: 0,
+                    attendanceDetails: [
+                        { date: '2024/04/12', koma: 2, status: '出席', reason: '-', updater: '教員O', updateDate: '2024/04/12' }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'S008',
+            name: '中村 浩司',
+            nameFurigana: 'ナカムラ コウジ',
+            department: '電気電子工学',
+            departmentCourse: '電気電子工学科・情報通信コース',
+            grade: '3年',
+            enrollmentYear: '2023',
+            enrollmentStatus: '在籍中',
+            totalAttendance: 85,
+            absentCount: 15,
+            subjects: [
+                {
+                    name: '信号処理',
+                    absent: 3, tardy: 1, earlyLeave: 0, suspension: 0,
+                    attendanceDetails: [
+                        { date: '2024/04/01', koma: 1, status: '欠席', reason: '体調不良', updater: '教員P', updateDate: '2024/04/01' },
+                        { date: '2024/04/08', koma: 1, status: '出席', reason: '-', updater: '教員P', updateDate: '2024/04/08' },
+                        { date: '2024/04/15', koma: 1, status: '遅刻', reason: '交通機関の乱れ', updater: '教員P', updateDate: '2024/04/15' }
+                    ]
+                },
+                {
+                    name: '通信工学',
+                    absent: 2, tardy: 0, earlyLeave: 0, suspension: 0,
+                    attendanceDetails: [
+                        { date: '2024/04/02', koma: 2, status: '欠席', reason: '私用', updater: '教員Q', updateDate: '2024/04/02' },
+                        { date: '2024/04/09', koma: 2, status: '出席', reason: '-', updater: '教員Q', updateDate: '2024/04/09' },
+                        { date: '2024/04/16', koma: 2, status: '欠席', reason: '家庭の事情', updater: '教員Q', updateDate: '2024/04/16' }
+                    ]
+                }
+            ]
+        }
+    ];
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const studentIdFromUrl = urlParams.get('studentId');
+    const subjectNameFromUrl = urlParams.get('subjectName');
+
+    const studentIdDisplay = document.getElementById('student-id-display');
+    const studentNameDisplay = document.getElementById('student-name-display');
+    const subjectNameDisplay = document.getElementById('subject-name-display');
+    const attendanceDetailTableBody = document.getElementById('attendance-detail-table-body');
+    const noAttendanceDataMessage = document.getElementById('no-attendance-data');
+    const backButton = document.getElementById('back-to-student-details');
+
+    if (studentIdFromUrl && subjectNameFromUrl) {
+        const foundStudent = ALL_STUDENTS_ATTENDANCE_DETAILS.find(s => s.id === studentIdFromUrl);
+
+        if (foundStudent) {
+            const decodedSubjectName = decodeURIComponent(subjectNameFromUrl);
+            const foundSubject = foundStudent.subjects.find(sub => sub.name === decodedSubjectName);
+
+            // 画面上部に学生ID、名前、科目名を表示
+            studentIdDisplay.value = foundStudent.id;
+            studentNameDisplay.value = foundStudent.name;
+            subjectNameDisplay.value = decodedSubjectName;
+
+            if (foundSubject && foundSubject.attendanceDetails && foundSubject.attendanceDetails.length > 0) {
+                attendanceDetailTableBody.innerHTML = ''; // 既存のサンプル行をクリア
+                foundSubject.attendanceDetails.forEach(detail => {
+                    const row = attendanceDetailTableBody.insertRow();
+                    row.insertCell().textContent = detail.date;
+                    row.insertCell().textContent = detail.koma;
+                    row.insertCell().textContent = detail.status;
+                    row.insertCell().textContent = detail.reason;
+                    row.insertCell().textContent = detail.updater;
+                    row.insertCell().textContent = detail.updateDate;
+                });
+                noAttendanceDataMessage.style.display = 'none'; // データがあればメッセージを非表示
+            } else {
+                noAttendanceDataMessage.style.display = 'block'; // データがなければメッセージを表示
+            }
+
+            // 「戻る」ボタンのリンク先を学生詳細画面に設定
+            // gakuseijyouhousyousai.html が学生IDをURLパラメータで受け取ることを想定
+            backButton.href = `gakuseijyouhousyousai.html?id=${studentIdFromUrl}`;
+
+        } else {
+            // 学生が見つからない場合
+            studentIdDisplay.value = 'N/A';
+            studentNameDisplay.value = '学生が見つかりません';
+            subjectNameDisplay.value = 'N/A';
+            noAttendanceDataMessage.style.display = 'block';
+            backButton.href = `index.html`; // 例: トップページ
+        }
+    } else {
+        // URLパラメータが不足している場合
+        studentIdDisplay.value = 'N/A';
+        studentNameDisplay.value = '情報が不足しています';
+        subjectNameDisplay.value = '情報が不足しています';
+        noAttendanceDataMessage.style.display = 'block';
+        backButton.href = `index.html`; // 例: トップページ
+    }
+});
+    </script>
 </body>
 </html>

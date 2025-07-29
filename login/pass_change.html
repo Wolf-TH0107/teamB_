@@ -11,26 +11,28 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #f0f2f5; /* Lighter, modern background */
+            background-color: #f0f2f5;
             margin: 0;
-            font-family: 'Noto Sans JP', sans-serif; /* Modern Japanese font */
+            font-family: 'Noto Sans JP', sans-serif;
             color: #333;
+            box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
         }
 
         .container {
             background-color: #ffffff;
-            border-radius: 12px; /* More rounded corners */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Softer, larger shadow */
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             padding: 40px;
             text-align: center;
-            width: 400px; /* Slightly wider container */
-            max-width: 90%; /* Responsive width */
+            width: 400px;
+            max-width: 90%;
             box-sizing: border-box;
+            margin: 20px; /* Add some margin for smaller screens */
         }
 
         h2 {
             font-size: 1.8em;
-            color: #2c3e50; /* Darker heading color */
+            color: #2c3e50;
             margin-bottom: 30px;
             font-weight: 700;
         }
@@ -43,16 +45,16 @@
         label {
             display: block;
             margin-bottom: 10px;
-            font-size: 1em; /* Slightly smaller label font */
+            font-size: 1em;
             color: #555;
             font-weight: 500;
         }
 
         input[type="password"] {
             width: 100%;
-            padding: 14px 15px; /* Increased padding */
-            border: 1px solid #e0e0e0; /* Lighter border */
-            border-radius: 8px; /* More rounded input fields */
+            padding: 14px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
             font-size: 1.05em;
             box-sizing: border-box;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -61,21 +63,21 @@
         input[type="password"]:focus {
             border-color: #007bff;
             outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Subtle focus shadow */
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
         }
 
         .buttons {
             display: flex;
             justify-content: space-between;
             margin-top: 35px;
-            gap: 15px; /* Space between buttons */
+            gap: 15px;
         }
 
         .button {
-            flex-grow: 1; /* Allow buttons to grow and fill space */
+            flex-grow: 1;
             padding: 14px 25px;
             border: none;
-            border-radius: 8px; /* More rounded buttons */
+            border-radius: 8px;
             font-size: 1.05em;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
@@ -86,20 +88,20 @@
         }
         
         .button-link {
-            text-decoration: none; /* Remove underline from links */
-            display: flex; /* Make links behave like flex items */
+            text-decoration: none;
+            display: flex;
             flex-grow: 1;
         }
 
         .back-button {
-            background-color: #e9ecef; /* Lighter gray for back button */
+            background-color: #e9ecef;
             color: #495057;
             border: 1px solid #dee2e6;
         }
 
         .back-button:hover {
             background-color: #dae0e5;
-            transform: translateY(-2px); /* Slight lift effect */
+            transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -113,27 +115,127 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
         }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875em;
+            margin-top: 5px;
+            text-align: left;
+            display: none; /* Hidden by default */
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px; /* Adjust padding for smaller screens */
+            }
+
+            h2 {
+                font-size: 1.5em; /* Smaller heading on mobile */
+                margin-bottom: 25px;
+            }
+
+            .buttons {
+                flex-direction: column; /* Stack buttons vertically on small screens */
+                gap: 10px; /* Reduce gap between stacked buttons */
+            }
+
+            .button {
+                width: 100%; /* Make buttons full width when stacked */
+                padding: 12px 20px; /* Adjust button padding */
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>新しいパスワードを設定</h2>
-        <div class="form-group">
-            <label for="new_password">新しいパスワード</label>
-            <input type="password" id="new_password" name="new_password" placeholder="新しいパスワードを入力">
-        </div>
-        <div class="form-group">
-            <label for="confirm_password">新しいパスワードの再入力</label>
-            <input type="password" id="confirm_password" name="confirm_password" placeholder="新しいパスワードを再入力">
-        </div>
-        <div class="buttons">
-            <a href="change.html" class="button-link">
-                <div class="button back-button">戻る</div>
-            </a>
-            <a href="change.html" class="button-link">
-                <div class="button update-button">更新</div>
-            </a>
-        </div>
+        <form id="passwordResetForm">
+            <div class="form-group">
+                <label for="new_password">新しいパスワード</label>
+                <input type="password" id="new_password" name="new_password" placeholder="新しいパスワードを入力">
+                <div class="error-message" id="newPasswordError"></div>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">新しいパスワードの再入力</label>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="新しいパスワードを再入力">
+                <div class="error-message" id="confirmPasswordError"></div>
+            </div>
+            <div class="buttons">
+                <a href="change.html" class="button-link">
+                    <div class="button back-button">戻る</div>
+                </a>
+                <button type="submit" class="button update-button" id="updateButton">更新</button>
+            </div>
+        </form>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('passwordResetForm');
+            const newPasswordInput = document.getElementById('new_password');
+            const confirmPasswordInput = document.getElementById('confirm_password');
+            const newPasswordError = document.getElementById('newPasswordError');
+            const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                let isValid = true;
+
+                // Reset error messages
+                newPasswordError.style.display = 'none';
+                confirmPasswordError.style.display = 'none';
+                newPasswordInput.classList.remove('input-error'); // Optional: Add a class for error styling
+                confirmPasswordInput.classList.remove('input-error'); // Optional: Add a class for error styling
+
+                const newPassword = newPasswordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+
+                // Password strength validation (example: at least 8 characters)
+                if (newPassword.length < 8) {
+                    newPasswordError.textContent = 'パスワードは8文字以上である必要があります。';
+                    newPasswordError.style.display = 'block';
+                    newPasswordInput.classList.add('input-error');
+                    isValid = false;
+                }
+
+                // Password match validation
+                if (newPassword !== confirmPassword) {
+                    confirmPasswordError.textContent = 'パスワードが一致しません。';
+                    confirmPasswordError.style.display = 'block';
+                    confirmPasswordInput.classList.add('input-error');
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    // Here you would typically send the new password to your server
+                    // For demonstration, we'll just show an alert
+                    alert('パスワードが正常に更新されました！');
+                    // In a real application, you would redirect or perform an AJAX call:
+                    // window.location.href = 'success.html';
+                }
+            });
+
+            // Optional: Real-time validation as user types (e.g., for password strength)
+            newPasswordInput.addEventListener('input', function() {
+                if (this.value.length > 0 && this.value.length < 8) {
+                    newPasswordError.textContent = 'パスワードは8文字以上である必要があります。';
+                    newPasswordError.style.display = 'block';
+                } else {
+                    newPasswordError.style.display = 'none';
+                }
+            });
+
+            confirmPasswordInput.addEventListener('input', function() {
+                if (this.value.length > 0 && newPasswordInput.value !== this.value) {
+                    confirmPasswordError.textContent = 'パスワードが一致しません。';
+                    confirmPasswordError.style.display = 'block';
+                } else {
+                    confirmPasswordError.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
