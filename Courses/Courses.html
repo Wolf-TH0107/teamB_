@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学科・コース一覧</title>
+    <link rel="stylesheet" href="css/Courses.css">
+</head>
+<body>
+    <div class="outer-container">
+        <div class="inner-container">
+            <h1 class="screen-title">学科・コース一覧</h1>
+
+            <div class="course-list-section">
+                <div class="course-list-container">
+                    <table id="courseTable">
+                        <thead>
+                            <tr>
+                                <th>学科・コース名</th>
+                                <th class="detail-col">詳細</th>
+                            </tr>
+                        </thead>
+                        <tbody id="courseTableBody">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="course-detail-section">
+                <div class="form-group">
+                    <label for="detailCourseName">学科名・コース名:</label>
+                    <input type="text" id="detailCourseName" placeholder="選択された学科・コース名">
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button id="updateButton">変更</button>
+                <button id="deleteButton">削除</button>
+            </div>
+
+            <div class="back-button-container">
+                <button id="backToAdminButton">管理者画面に戻る</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/Courses.js"></script>
+</body>
+</html>

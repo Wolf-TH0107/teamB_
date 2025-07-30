@@ -1,0 +1,437 @@
+/* ベーススタイル */
+body {
+    font-family: sans-serif;
+    background-color: #ADD8E6; /* 画像のような薄い青の背景 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 10px; /* 小さい画面での余白を追加 */
+    box-sizing: border-box; /* paddingとborderをwidthに含める */
+    overflow-y: auto; /* コンテンツが溢れた場合にbodyのスクロールを許可 */
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center; /* タイトルを中央揃え */
+    font-size: 2em; /* デフォルトのフォントサイズ */
+}
+
+.container {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 800px; /* 全体の幅を広げ、内容に合わせる */
+    max-width: 95%; /* レスポンシブ対応：ビューポート幅の最大95% */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    box-sizing: border-box; /* レスポンシブな幅に必須 */
+}
+
+.attendance-table-container {
+    border: 1px solid #ccc;
+    background-color: #FFFFE0; /* 黄色の部分 */
+    padding: 15px;
+    width: 95%; /* 親要素の幅に合わせて調整 */
+    max-height: 400px; /* スクロール可能にするための最大高さ */
+    overflow-y: auto; /* 高さを超えたらスクロール */
+    overflow-x: auto; /* テーブルが狭い場合に水平スクロールを追加 */
+    -webkit-overflow-scrolling: touch; /* iOSデバイスでのスムーズなスクロール */
+    box-sizing: border-box;
+}
+
+.attendance-table {
+    display: flex;
+    flex-wrap: wrap; /* 複数列で項目を配置 */
+    gap: 10px 20px; /* 行と列の間のスペース */
+    justify-content: flex-start; /* 左寄せ */
+    min-width: 600px; /* カラムが潰れすぎないように最低幅を確保 */
+}
+
+.attendance-item-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 0;
+    /* 2列にするためのflex設定 (gap分を考慮) */
+    flex: 1 1 calc(50% - 10px); /* 2列表示のための計算。attendance-tableのgap(20px)の半分を引く */
+    box-sizing: border-box; /* paddingとborderをwidthに含める */
+    /* Remove min-width here as it interferes with flex wrapping */
+}
+
+.student-name {
+    flex-shrink: 0; /* 名前が縮まないように */
+    width: 100px; /* 名前の表示幅を固定 */
+    text-align: right; /* 名前の右寄せ */
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* トグルスイッチのスタイル */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #2196F3;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #F44336;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #F44336;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.attendance-label {
+    font-weight: bold;
+    margin-left: 5px;
+    flex-shrink: 0;
+    width: 50px;
+}
+
+.red-state-dropdown-wrapper {
+    display: none;
+    flex-shrink: 0;
+    width: 100px;
+}
+
+/* ドロップダウンのスタイル */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    max-height: 150px;
+    overflow-y: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 8px 10px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9em;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+    flex-wrap: wrap; /* 小さい画面でボタンを折り返す */
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    flex-shrink: 0; /* ボタンが縮みすぎないように */
+}
+
+.button:hover {
+    background-color: #e0e0e0;
+}
+
+/* モーダルウィンドウのスタイル */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+    padding: 10px; /* 小さい画面でのモーダルのパディング */
+    box-sizing: border-box;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+    max-width: 90%; /* モーダルをレスポンシブにする */
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-sizing: border-box;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap; /* モーダルボタンを折り返す */
+}
+
+.modal-buttons .button {
+    flex-grow: 1; /* モーダルボタンを伸縮させる */
+    min-width: 80px; /* モーダルボタンの最低幅 */
+    padding: 8px 15px; /* 小さいモーダルボタンのパディングを調整 */
+}
+
+/* モーダルが表示されているときのスタイル */
+.modal.show {
+    display: flex;
+}
+
+---
+
+## Responsive Enhancements (レスポンシブ対応の強化点)
+
+To achieve the desired two-column layout on larger screens and a smooth transition to a single column on smaller screens, while incorporating your excellent responsiveness improvements, I've made the following adjustments:
+
+### 1. Overall Layout Adaptability (全体レイアウトの適応性)
+
+* **`body` padding:** Added `padding: 10px;` to the `body` to prevent content from touching the edges on very small screens.
+* **`container` `max-width`:** Changed `.container`'s `width: 800px;` to `max-width: 95%;`. This ensures that on larger screens, it maintains a maximum width, but on smaller screens, it shrinks to fit the viewport.
+* **`box-sizing: border-box;`:** Applied to relevant elements (`body`, `container`, `attendance-table-container`, `attendance-item-row`, `dropdown`, `modal`, `modal-content`). This is crucial for responsive design as it ensures padding and borders are included in the element's total width/height, preventing unexpected layout shifts.
+
+### 2. Table and Attendance Row Management (テーブルと出席行の管理)
+
+* **`.attendance-table-container` with `overflow-x: auto;`:** This is vital. If the content within the table (like student names or controls) exceeds the screen width, a **horizontal scrollbar will appear only within the table container**, preserving the overall page layout. `min-width: 600px;` was added to `.attendance-table` to prevent the columns from becoming too squished before the scrollbar appears.
+* **`attendance-item-row` adaptability:**
+    * The `flex: 1 1 calc(50% - 10px);` on `.attendance-item-row` is now more accurate for a two-column layout, as it subtracts half of the `attendance-table`'s `gap` (20px / 2 = 10px). This ensures that two items fit perfectly side-by-side.
+    * Removed `min-width` from `.attendance-item-row` in the base style to allow for better flexibility with `flex-wrap`.
+
+### 3. Button Behavior (ボタンの動作)
+
+* **`flex-wrap: wrap;`:** Added to the `.buttons` container (and `.modal-buttons`). This makes sure that buttons wrap to a new line if there isn't enough horizontal space, preventing them from overlapping or shrinking excessively.
+
+### 4. Responsive Modal Window (モーダルウィンドウのレスポンシブ化)
+
+* **`.modal-content` `max-width: 90%;`:** The modal will now shrink to a maximum of 90% of the screen width on smaller screens, ensuring it fits comfortably.
+* **`.modal` `padding: 10px;`:** Provides a slight margin around the modal content, especially on mobile devices.
+* **`.modal-buttons .button` with `flex-grow: 1;` and `min-width`:** The buttons within the modal will now expand to fill available space while maintaining a minimum readable width.
+
+### 5. Media Queries for Smaller Screens (小さい画面向けのメディアクエリ)
+
+Media queries are used to apply specific styles when the screen size falls below certain thresholds.
+
+---
+
+```css
+/* --- レスポンシブ調整 --- */
+
+/* 767px以下の画面（一般的なタブレットのブレークポイント） */
+@media (max-width: 767px) {
+    h1 {
+        font-size: 1.8em; /* タイトルを少し小さく */
+    }
+
+    .container {
+        padding: 15px; /* コンテナのパディングを減らす */
+    }
+
+    .attendance-table {
+        min-width: 500px; /* テーブルの最低幅を調整（水平スクロールは維持） */
+    }
+
+    .attendance-item-row {
+        /* 小さいタブレットでは2カラムレイアウトを維持しつつ、間隔を調整 */
+        flex: 1 1 calc(50% - 15px); /* gapを考慮して調整 */
+        gap: 8px; /* 間隔を少し減らす */
+    }
+
+    .student-name {
+        width: 80px; /* スペースがタイトな場合、名前の幅を少し減らす */
+    }
+
+    .red-state-dropdown-wrapper {
+        width: 80px; /* ドロップダウンの幅を調整 */
+    }
+
+    .buttons {
+        flex-direction: column; /* 小さい画面でボタンを縦に積み重ねる */
+        gap: 15px;
+    }
+
+    .button {
+        width: 100%; /* 積み重ねたボタンを全幅にする */
+        font-size: 15px; /* ボタンのフォントを少し小さく */
+        padding: 10px 15px;
+    }
+
+    .modal-content p {
+        font-size: 1em; /* モーダルメッセージのフォントを小さく */
+    }
+
+    .modal-buttons .button {
+        font-size: 0.9em;
+        padding: 8px 12px;
+    }
+}
+
+/* 480px以下の非常に小さい画面（スマートフォン） */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5em; /* タイトルをさらに小さく */
+        margin-bottom: 15px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .attendance-table-container {
+        padding: 10px; /* テーブルコンテナのパディングを減らす */
+    }
+
+    .attendance-table {
+        min-width: unset; /* 最低幅を完全に削除し、完全な柔軟性を許可 */
+        /* 非常に小さい画面では1カラムレイアウトに変更 */
+        flex-direction: column; /* 出席行を縦に積み重ねる */
+        gap: 15px; /* 積み重ねた行間の間隔 */
+    }
+
+    .attendance-item-row {
+        flex-direction: row; /* 生徒名とコントロールを縦に積み重ねる */
+        align-items: flex-start; /* コンテンツを左揃え */
+        gap: 5px; /* 行内の積み重ねた要素間の間隔を小さく */
+        padding: 8px 0;
+        min-width: unset; /* 個々のアイテムの最低幅を削除 */
+        flex: 1 1 100%; /* 積み重ねたときに各行が全幅を占めるようにする */
+        border-bottom: 1px dashed #eee; /* 目立たない区切り線を追加 */
+    }
+    .attendance-item-row:last-child {
+        border-bottom: none;
+    }
+
+    .student-name {
+        width: auto; /* 名前の幅を自然に調整 */
+        text-align: left; /* 名前を左揃え */
+        margin-right: 10px;
+        white-space: normal; /* 名前が長い場合に改行を許可 */
+        overflow: visible; /* スペースがある場合は省略しない */
+        text-overflow: clip;
+        font-size: 1.1em; /* 読みやすさのために少し大きく */
+        margin-bottom: 5px; /* 名前とコントロール間の間隔 */
+    }
+
+    .attendance-label {
+        width: auto; /* ラベルの幅を調整 */
+        margin-left: 0; /* 積み重ねた場合は左マージンなし */
+    }
+
+    /* 出席項目の主要コンテンツを水平に調整 */
+    .attendance-controls { /* スイッチ、ラベル、ドロップダウンを囲むdivを想定 */
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%; /* コントロールが全幅を占めるようにする */
+        justify-content: flex-start; /* コントロールを左揃え */
+    }
+
+    .switch {
+        width: 50px; /* スイッチを少し小さく */
+        height: 28px;
+    }
+
+    .slider:before {
+        height: 22px;
+        width: 22px;
+        left: 3px;
+        bottom: 3px;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(22px);
+        -ms-transform: translateX(22px);
+        transform: translateX(22px);
+    }
+
+    .red-state-dropdown-wrapper {
+        width: 100px; /* ドロップダウンに十分なスペースを確保 */
+    }
+
+    .modal-content {
+        padding: 15px; /* モーダルのパディングを小さく */
+    }
+}

@@ -1,0 +1,115 @@
+body {
+    font-family: sans-serif;
+    background-color: #e0f7fa; /* 水色背景 */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 50px;
+    margin: 0;
+}
+
+.container {
+    width: 600px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* 5x4のグリッドレイアウト */
+.schedule-grid-container {
+    display: grid;
+    grid-template-columns: 50px repeat(5, 1fr);
+    grid-gap: 1px;
+    border: 1px solid #000;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.day-of-week, .time-label {
+    background-color: #fff;
+    padding: 10px 5px;
+    font-weight: bold;
+    border: 1px solid #000;
+}
+
+.day-of-week {
+    background-color: #f0f0f0;
+}
+
+.input-cell {
+    background-color: #ffcccc; /* 赤色の部分 */
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.input-cell input {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-size: 14px;
+}
+
+.button-group {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.action-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+/* モーダルウィンドウのスタイル */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+}
+
+.modal-buttons button {
+    padding: 8px 16px;
+    margin: 0 10px;
+    cursor: pointer;
+}

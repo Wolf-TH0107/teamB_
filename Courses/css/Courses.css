@@ -1,0 +1,314 @@
+body {
+    font-family: sans-serif;
+    background-color: #e0f2f7; /* 青系の背景色 */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* コンテンツが上に寄るように調整 */
+    min-height: 100vh;
+    padding: 20px;
+    margin: 0;
+    box-sizing: border-box; /* paddingを含めて幅を計算 */
+}
+
+.outer-container {
+    background-color: white;
+    border: 1px solid #000;
+    padding: 20px;
+    width: 100%; /* 幅を調整 */
+    max-width: 800px; /* 最大幅を設定 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.inner-container {
+    border: 1px solid #000;
+    padding: 20px;
+    background-color: #f7f7f7; /* 内側の背景色を少し変える */
+    box-sizing: border-box;
+}
+
+.screen-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+/* 学科・コース一覧表示エリア (黄色の部分) */
+.course-list-section {
+    background-color: #fffacd; /* 薄い黄色 */
+    border: 1px solid #000;
+    padding: 15px;
+    margin-bottom: 20px;
+    min-height: 200px; /* 高さの目安 */
+    box-sizing: border-box;
+    position: relative; /* 詳細ボタンの配置用 */
+    display: flex; /* Flexboxを有効にする */
+    flex-direction: column; /* 要素を縦に並べる */
+}
+
+.list-instruction {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.course-list-container {
+/*    max-height: 150px; /* 一覧表示の高さ制限 */*/
+    overflow-y: auto; /* スクロール可能にする */
+    overflow-x: auto; /* テーブルがはみ出した場合に横スクロールを可能にする */
+    border: 1px solid #ccc; /* リストの枠線 */
+    background-color: white; /* リストの背景色 */
+    flex-grow: 1; /* 残りのスペースを埋める */
+}
+
+#courseTable {
+    width: 100%;
+    border-collapse: collapse;
+/*    min-width: 400px; /* テーブルが小さくなりすぎないように最小幅を設定 */*/
+}
+
+#courseTable th,
+#courseTable td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+    white-space: normal; /* テキストの折り返しを防止 */
+}
+
+#courseTable th {
+    background-color: #eee;
+}
+
+#courseTable tbody tr {
+    cursor: pointer; /* クリック可能であることを示す */
+}
+
+#courseTable tbody tr:hover {
+    background-color: #f0f0f0; /* ホバー時の色 */
+}
+
+.detail-col {
+    width: 80px; /* 詳細列の幅 */
+    text-align: center;
+}
+
+.list-detail-button {
+    background-color: #007bff; /* 青色のボタン */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    white-space: nowrap; /* ボタン内のテキストを折り返さない */
+}
+
+.list-detail-button:hover {
+    background-color: #0056b3;
+}
+
+
+/* 学科・コース名表示・編集エリア */
+.course-detail-section {
+    border: 1px solid #000; /* 画像の四角い枠 */
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: white; /* 背景色 */
+    box-sizing: border-box;
+}
+
+.course-detail-section .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* 下マージンを少し追加 */
+    flex-wrap: wrap; /* 要素が折り返せるようにする */
+}
+
+.course-detail-section .form-group:last-of-type {
+    margin-bottom: 0; /* 最後のform-groupの下マージンを削除 */
+}
+
+.course-detail-section .form-group label {
+    width: 150px; /* ラベルの幅を調整 */
+    margin-right: 10px;
+    white-space: nowrap;
+    flex-shrink: 0; /* ラベルが縮まないように */
+}
+
+.course-detail-section .form-group input[type="text"] {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    min-width: 0; /* flexアイテムが縮むことを許可 */
+}
+
+/* 変更・削除ボタン */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* ボタン間のスペース */
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* ボタンが折り返せるようにする */
+}
+
+.button-group button {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    flex-grow: 1; /* ボタンが伸縮するように */
+    min-width: 120px; /* ボタンの最小幅 */
+}
+
+#updateButton {
+    background-color: #28a745; /* 緑色のボタン */
+    color: white;
+}
+
+#updateButton:hover {
+    background-color: #218838;
+}
+
+#deleteButton {
+    background-color: #dc3545; /* 赤色のボタン */
+    color: white;
+}
+
+#deleteButton:hover {
+    background-color: #c82333;
+}
+
+/* 管理者画面に戻るボタン */
+.back-button-container {
+    text-align: center;
+}
+
+#backToAdminButton {
+    padding: 10px 40px;
+    background-color: #6c757d; /* 灰色系のボタン */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    width: auto; /* 幅を自動調整 */
+}
+
+#backToAdminButton:hover {
+    background-color: #5a6268;
+}
+
+---
+
+## Responsive Adjustments (レスポンシブ調整)
+
+Here are the specific changes made to improve mobile responsiveness:
+
+### General Layout
+
+* **`body` padding:** Increased `padding` to `20px` to give more breathing room on all screen sizes, especially small ones.
+* **`outer-container` width:** The `width: 80%;` combined with `max-width: 700px;` ensures the container scales down on smaller screens but doesn't get too wide on larger ones.
+* **`box-sizing: border-box;`:** Applied consistently to all major containers and form elements to ensure consistent box model behavior across all browsers and prevent unexpected overflow.
+
+### Course List Section
+
+* **`course-list-section`:** Changed to `display: flex; flex-direction: column;` with `flex-grow: 1;` on `.course-list-container` to make the section more flexible and ensure the table container expands as needed.
+* **`course-list-container` `overflow-x: auto;`:** This is crucial for tables. If the table's content (columns) exceeds the available screen width, a horizontal scrollbar will appear *within this container*, preventing the entire page layout from breaking.
+* **`#courseTable min-width`:** Set a `min-width: 400px;` for the table itself. This prevents columns from becoming excessively narrow and unreadable before the horizontal scrollbar appears.
+* **`white-space: nowrap;`:** Maintained for table cells (`th`, `td`) to prevent text from wrapping within cells, which helps keep columns aligned and ensures the horizontal scroll is effective for overflow.
+
+### Course Detail Section
+
+* **`.form-group flex-wrap`:** Added `flex-wrap: wrap;` to `.course-detail-section .form-group`. On smaller screens, if the label and input cannot fit side-by-side, the input will wrap to the next line, stacking vertically for better readability.
+* **`.form-group label flex-shrink`:** Added `flex-shrink: 0;` to ensure labels don't shrink when space is constrained, maintaining their readability.
+* **`.form-group input[type="text"] min-width: 0;`:** Allows the input field to shrink as much as needed within the flex container.
+
+### Buttons
+
+* **`.button-group flex-wrap`:** Added `flex-wrap: wrap;` to the `.button-group` so that the "Update" and "Delete" buttons will stack vertically when there's not enough horizontal space.
+* **`.button-group button flex-grow` and `min-width`:** Buttons will now grow to fill available space (`flex-grow: 1;`) but also maintain a `min-width: 120px;` to ensure they are always tappable and readable. This means on smaller screens, they will likely take up the full width when stacked.
+* **`#backToAdminButton width: auto;`:** Ensures this button adjusts its width naturally based on its content and available space.
+
+---
+
+### Media Queries
+
+#### For Tablets and Smaller Screens (`max-width: 768px`)
+
+```css
+@media (max-width: 768px) {
+    body {
+        padding: 15px; /* 少しパディングを減らす */
+    }
+
+    .outer-container {
+        padding: 15px; /* コンテナのパディングも減らす */
+        width: 90%; /* 幅を少し広げる */
+    }
+
+    .inner-container {
+        padding: 15px;
+    }
+
+    .screen-title {
+        font-size: 1.3em; /* タイトルを少し小さく */
+        margin-bottom: 15px;
+    }
+
+    .course-list-section {
+        padding: 10px; /* 黄色いセクションのパディングを減らす */
+    }
+
+    .list-instruction {
+        font-size: 0.85em; /* 説明文を小さく */
+    }
+
+    #courseTable th,
+    #courseTable td {
+        padding: 6px; /* テーブルのセルパディングを減らす */
+        font-size: 0.9em; /* テーブルのフォントサイズを小さく */
+    }
+
+    .detail-col {
+        width: 60px; /* 詳細列の幅をさらに調整 */
+    }
+
+    .list-detail-button {
+        padding: 4px 8px; /* 詳細ボタンを小さく */
+        font-size: 0.8em;
+    }
+
+    .course-detail-section {
+        padding: 15px;
+    }
+
+    .course-detail-section .form-group label {
+        width: 120px; /* ラベルの幅を少し縮める */
+        margin-right: 8px;
+        font-size: 0.95em;
+    }
+
+    .course-detail-section .form-group input[type="text"] {
+        padding: 6px; /* 入力フィールドのパディングを減らす */
+        font-size: 0.95rem;
+    }
+
+    .button-group {
+        gap: 15px; /* ボタン間のスペースを減らす */
+        margin-bottom: 25px;
+    }
+
+    .button-group button {
+        padding: 8px 20px; /* ボタンのパディングを調整 */
+        font-size: 1em;
+        min-width: 100px; /* ボタンの最小幅を調整 */
+    }
+
+    #backToAdminButton {
+        padding: 8px 30px;
+        font-size: 1em;
+    }
+}

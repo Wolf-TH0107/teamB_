@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学科・コース一覧</title>
+    <link rel="stylesheet" href="css/students.css">
+</head>
+<body>
+    <div class="container">
+        <h1>学科・コース一覧</h1>
+
+        <div class="bottom-buttons-container">
+            <button id="createButton">新規作成</button>
+        </div>
+
+        <div class="yellow-area" id="studentInfoListArea">
+            <table class="student-info-table">
+                <thead>
+                    <tr>
+                        <th>学籍番号</th>
+                        <th>学年</th>
+                        <th>名前</th>
+                        <th>フリガナ</th>
+                        <th>学科</th> <th>コース</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="studentInfoTableBody">
+                    <tr data-student-id="S001" data-grade="3" data-name="山田 太郎" data-furigana="ヤマダ タロウ" data-gakka="高度情報システム科" data-course="ITスペシャリストコース">
+                        <td>S001</td>
+                        <td>3</td>
+                        <td>山田 太郎</td>
+                        <td>ヤマダ タロウ</td>
+                        <td>高度情報システム科</td>
+                        <td>ITスペシャリストコース</td>
+                        <td><button class="select-student-btn">選択</button></td>
+                    </tr>
+                    <tr data-student-id="S002" data-grade="1" data-name="鈴木 花子" data-furigana="スズキ ハナコ" data-gakka="情報システム科" data-course="IT・エンジニアコース">
+                        <td>S002</td>
+                        <td>1</td>
+                        <td>鈴木 花子</td>
+                        <td>スズキ ハナコ</td>
+                        <td>情報システム科</td>
+                        <td>IT・エンジニアコース</td>
+                        <td><button class="select-student-btn">選択</button></td>
+                    </tr>
+                    <tr data-student-id="S003" data-grade="4" data-name="田中 次郎" data-furigana="タナカ ジロウ" data-gakka="ホテル・ブライダル科" data-course="">
+                        <td>S003</td>
+                        <td>4</td>
+                        <td>田中 次郎</td>
+                        <td>タナカ ジロウ</td>
+                        <td>ホテル・ブライダル科</td>
+                        <td></td>
+                        <td><button class="select-student-btn">選択</button></td>
+                    </tr>
+                    <tr data-student-id="S004" data-grade="2" data-name="佐藤 恵" data-furigana="サトウ メグミ" data-gakka="医療秘書科" data-course="">
+                        <td>S004</td>
+                        <td>2</td>
+                        <td>佐藤 恵</td>
+                        <td>サトウ メグミ</td>
+                        <td>医療秘書科</td>
+                        <td></td>
+                        <td><button class="select-student-btn">選択</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="input-section">
+            <div class="input-row">
+                <label for="gakkaNameChangeInput">学科名の変更</label>
+                <input type="text" id="gakkaNameChangeInput" placeholder="新しい学科名">
+                <button id="changeGakkaNameButton">変更</button>
+            </div>
+            <div class="input-row">
+                <label for="courseNameChangeSelect">コース名の変更</label>
+                <select id="gakkaSelect">
+                    <option value="">学科を選択してください</option>
+                    <option value="高度情報システム科">高度情報システム科</option>
+                    <option value="情報システム科">情報システム科</option>
+                    <option value="ホテル・ブライダル科">ホテル・ブライダル科</option>
+                    <option value="医療秘書科">医療秘書科</option>
+                </select>
+                <input type="text" id="courseNameChangeInput" placeholder="新しいコース名">
+                <button id="changeCourseNameButton">変更</button>
+            </div>
+        </div>
+
+        <div class="display-section">
+            <p>学科名: <span id="displayedGakkaName">未選択</span></p>
+            <p>コース名: <span id="displayedCourseName">未選択</span></p>
+            <p>選択中の学生: <span id="selectedStudentInfo">なし</span></p>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn-change" id="modifyButton">変更</button>
+            <button class="btn-delete" id="deleteButton">削除</button>
+        </div>
+
+        <div class="bottom-buttons-container">
+            <button class="back-button" id="backToAdminButton">管理者画面に戻る</button>
+        </div>
+    </div>
+
+    <script src="js/students.js"></script>
+</body>
+</html>

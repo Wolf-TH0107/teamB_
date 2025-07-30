@@ -1,0 +1,319 @@
+/* Bodyと全体のレイアウト */
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 上部に揃える */
+    min-height: 100vh;
+    margin: 0;
+    background-color: #e0f2f7; /* 画像のような薄い青色の背景 */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* アプリケーションのメインコンテナ */
+.container {
+    background-color: #fff; /* メインコンテンツエリアの白い背景 */
+    border: 2px solid #a0d9ef; /* 画像に合わせた青い枠線 */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px; /* 必要に応じて調整 */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* 要素間の間隔 */
+}
+
+/* テンプレート表示上のヘッダーテキスト */
+.header-text {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* テンプレートリストのコンテナ（大きな赤色の部分） */
+.template-display {
+    position: relative;
+    width: 90%; /* 必要に応じて調整 */
+    height: 350px; /* コンテンツの増加に合わせて高さを調整 */
+    background-color: #ffcccc; /* メインのテンプレートエリアの薄い赤色 */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow-y: auto; /* 縦方向のスクロールを有効にする */
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* 個々のテンプレートアイテムを配置するためのグリッド */
+.template-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* コンテンツの増加に合わせて列幅を調整 */
+    gap: 15px; /* テンプレートアイテム間の間隔 */
+}
+
+/* 個々のテンプレートアイテム（小さな赤色のボックス） */
+.template-item {
+    background-color: #ff9999; /* 個々のテンプレートボックスの濃い赤色 */
+    border: 1px solid #cc6666;
+    height: auto; /* コンテンツに基づいて高さを自動調整 */
+    min-height: 120px; /* 視認性向上のための最小高さ */
+    border-radius: 3px;
+    display: flex; /* テンプレートアイテム内のレイアウトにflexboxを使用 */
+    flex-direction: column; /* 名前と時間割を縦に並べる */
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 0.8em;
+    color: #333;
+    cursor: pointer; /* クリック可能であることを示す */
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* テンプレートアイテムのホバーエフェクト */
+.template-item:hover {
+    background-color: #ff6666; /* ホバー時に濃くする */
+}
+
+/* 選択されたテンプレートアイテムのスタイル */
+.template-item.selected {
+    border: 2px solid #007bff; /* 選択されたアイテムの青い枠線 */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    background-color: #ff6666; /* 選択時も濃い背景色を維持 */
+}
+
+/* テンプレートアイテム内の名前表示 */
+.template-item-name {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 5px;
+    white-space: nowrap; /* 名前が折り返さないようにする */
+    overflow: hidden;
+    text-overflow: ellipsis; /* 名前が長すぎる場合に省略記号を追加 */
+    padding-bottom: 5px; /* 名前の下のスペース */
+    border-bottom: 1px solid rgba(0,0,0,0.1); /* 区切り線 */
+}
+
+/* 各テンプレートアイテム内のミニ時間割表示用グリッド */
+.template-schedule-grid {
+    display: grid;
+    grid-template-columns: 0.5fr repeat(5, 1fr); /* 最初の列は時間（狭く）、続く5列は曜日 */
+    grid-template-rows: auto repeat(4, 1fr); /* 最初の行は曜日、続く4行は時間帯 */
+    gap: 1px; /* グリッド線の非常に小さな間隔 */
+    width: 100%;
+    flex-grow: 1; /* グリッドが利用可能な高さを埋めるようにする */
+}
+
+/* 時間割グリッド内のセルの共通スタイル */
+.grid-header-day, .grid-header-time, .grid-cell {
+    background-color: #ffe0e0; /* セルの薄い赤色 */
+    border: 1px solid #ffcccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.65em; /* 時間割詳細の小さなフォントサイズ */
+    font-weight: bold;
+    color: #666;
+    border-radius: 2px;
+    text-align: center;
+    padding: 2px;
+    overflow: hidden; /* はみ出したテキストを隠す */
+    white-space: nowrap; /* 折り返しを防止 */
+    text-overflow: ellipsis; /* はみ出したテキストに省略記号を追加 */
+}
+
+/* 曜日のヘッダーセル（月、火など） */
+.grid-header-day {
+    background-color: #ffdada; /* 曜日のヘッダーに少し異なる色 */
+    font-weight: bold;
+    color: #444;
+}
+
+/* 時間帯のヘッダーセル（1、2など） */
+.grid-header-time {
+    background-color: #ffdada; /* 時間帯のヘッダーに少し異なる色 */
+    font-weight: bold;
+    color: #444;
+}
+
+/* スクロールインジケーターのスタイル（基本的なもの、ほとんどはブラウザが処理） */
+.scroll-indicator {
+    /* この要素は主に画像の視覚的参照用です。
+       実際のブラウザではネイティブのスクロールバーが機能を処理します。
+       ネイティブのスクロールバーに依存する場合は、このdivは実際の実装では不要かもしれません。 */
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px; /* スクロールバーの幅 */
+    height: 100%;
+    background-color: #e0e0e0; /* 薄い灰色のスクロールバートラック */
+    border-radius: 5px;
+    opacity: 0.7; /* 少し透明にする */
+    display: none; /* このカスタムインジケーターを非表示にし、ネイティブのスクロールバーに依存する */
+}
+
+/* WebKit (Chrome, Safari) スクロールバーのスタイル */
+.template-display::-webkit-scrollbar {
+    width: 8px; /* WebKitブラウザ用のスクロールバーの幅 */
+}
+
+.template-display::-webkit-scrollbar-track {
+    background: #f1f1f1; /* スクロールバートラックの色 */
+    border-radius: 10px;
+}
+
+.template-display::-webkit-scrollbar-thumb {
+    background: #888; /* スクロールバーのツマミの色 */
+    border-radius: 10px;
+}
+
+.template-display::-webkit-scrollbar-thumb:hover {
+    background: #555; /* ホバー時のスクロールバーのツマミの色 */
+}
+
+/* 全体的なボタンのスタイル */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+/* 各ボタンの特定スタイル */
+.details-button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    color: #333;
+    margin-right: auto; /* ボタンを左に寄せる */
+    margin-left: 5%; /* テンプレートエリアと揃えるために調整 */
+}
+
+.details-button:hover {
+    background-color: #e0e0e0;
+}
+
+.use-button {
+    background-color: #007bff;
+    color: white;
+    margin-top: 10px;
+}
+
+.use-button:hover {
+    background-color: #0056b3;
+}
+
+.back-button {
+    background-color: #6c757d;
+    color: white;
+    margin-top: 10px;
+}
+
+.back-button:hover {
+    background-color: #5a6268;
+}
+
+/* --- モーダルウィンドウのスタイル --- */
+
+/* モーダルの背景 */
+.modal {
+    display: none; /* デフォルトでは非表示 */
+    position: fixed; /* 画面に固定 */
+    z-index: 1000; /* 他の要素の上に表示 */
+    left: 0;
+    top: 0;
+    width: 100%; /* 全幅 */
+    height: 100%; /* 全高 */
+    overflow: auto; /* 必要に応じてスクロールを有効にする */
+    background-color: rgba(0,0,0,0.6); /* 不透明度を持つ黒い背景 */
+    justify-content: center; /* 水平方向中央寄せ */
+    align-items: center; /* 垂直方向中央寄せ */
+}
+
+/* モーダルのコンテンツボックス */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto; /* 古いブラウザ/フォールバックの中央寄せのため */
+    padding: 30px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 80%; /* 幅を調整 */
+    max-width: 700px; /* 最大幅 */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative; /* 閉じるボタンの位置決めの基準 */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* コンテンツを垂直方向に中央寄せ */
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center; /* モーダルタイトルを中央寄せ */
+}
+
+/* モーダルの閉じるボタン */
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+/* 詳細表示用モーダル内の時間割グリッド */
+.modal-schedule-grid {
+    display: grid;
+    /* 最初の列は時間（狭く）、続く5列は曜日 */
+    grid-template-columns: 0.6fr repeat(5, 1fr); 
+    /* 最初の行は曜日ヘッダー、続く4行は時間帯 */
+    grid-template-rows: auto repeat(4, 1fr);
+    gap: 1px; /* グリッド線 */
+    width: 100%;
+    border: 1px solid #ccc; /* グリッド全体の枠線 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* モーダルの時間割グリッド内のセルの共通スタイル */
+.modal-schedule-grid .grid-header-day,
+.modal-schedule-grid .grid-header-time,
+.modal-schedule-grid .grid-cell {
+    background-color: #f8f8f8; /* セルの背景色 */
+    border: 1px solid #e0e0e0; /* 個々のセルの枠線 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 5px; /* 視認性向上のためのパディング増加 */
+    font-size: 0.85em; /* 詳細表示用のフォントサイズ調整 */
+    color: #444;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* モーダル内の曜日と時間帯のヘッダーセル */
+.modal-schedule-grid .grid-header-day,
+.modal-schedule-grid .grid-header-time {
+    background-color: #e9ecef; /* ヘッダーの背景色 */
+    font-weight: bold;
+    color: #212529;
+}
+
+/* モーダルをアクティブ/表示するためのクラス */
+.modal.active {
+    display: flex; /* Flexboxを使用して中央寄せを有効にする */
+}

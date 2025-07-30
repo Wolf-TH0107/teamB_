@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出欠一括登録</title>
+    <link rel="stylesheet" href="css/Attendance.css">
+</head>
+<body>
+    <div class="container">
+        <h1>出欠一括登録画面</h1>
+
+        <div class="attendance-table-container">
+            <div class="attendance-table" id="attendanceTable">
+                </div>
+        </div>
+
+        <div class="buttons">
+            <button class="button" id="registerButton">登録</button>
+            <button class="button" id="backButton">戻る</button>
+        </div>
+    </div>
+
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <p>登録しますか？</p>
+            <div class="modal-buttons">
+                <button class="button" id="modalYes">はい</button>
+                <button class="button" id="modalNo">いいえ</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <p>登録しました。</p>
+            <div class="modal-buttons">
+                <button class="button" id="modalOk">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/Attendance.js"></script>
+</body>
+</html>

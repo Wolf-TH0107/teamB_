@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時間割確認</title>
+    <link rel="stylesheet" href="css/check.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="date-display">
+                <label for="selected-date">日付</label>
+                <input type="text" id="selected-date" readonly>
+                <button id="calendar-toggle-btn">
+                    <img src="https://via.placeholder.com/20x20" alt="カレンダーアイコン">
+                </button>
+            </div>
+        </div>
+
+        <div id="calendar-container" class="calendar-container hidden">
+            <div class="calendar-header">
+                <button id="prev-month-btn">&lt;</button>
+                <h2 id="current-month-year"></h2>
+                <button id="next-month-btn">&gt;</button>
+            </div>
+            <div class="calendar">
+                <div class="day-of-week">日</div>
+                <div class="day-of-week">月</div>
+                <div class="day-of-week">火</div>
+                <div class="day-of-week">水</div>
+                <div class="day-of-week">木</div>
+                <div class="day-of-week">金</div>
+                <div class="day-of-week">土</div>
+                <div id="calendar-body" class="calendar-body">
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <button id="new-entry-button" class="new-entry-button">
+                <p class="new-entry">新規入力</p>
+            </button>
+        </div>
+
+        <a href="#" class="template-button">テンプレート登録</a>
+    </div>
+    
+    <script src="js/check.js"></script>
+</body>
+</html>

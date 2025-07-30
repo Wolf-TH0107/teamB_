@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時間割登録</title>
+    <link rel="stylesheet" href="css/Timetable.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">一週間の時間割登録</h1>
+
+        <div class="schedule-grid-container">
+            <div class="day-of-week"></div>
+            <div class="day-of-week">月</div>
+            <div class="day-of-week">火</div>
+            <div class="day-of-week">水</div>
+            <div class="day-of-week">木</div>
+            <div class="day-of-week">金</div>
+            
+            <div class="time-label">1</div>
+            <div class="input-cell"><input type="text"></div>
+            <div class="input-cell"><input type="text"></div>
+            <div class="input-cell"><input type="text"></div>
+            <div class="input-cell"><input type="text"></div>
+            <div class="input-cell"><input type="text"></div>
+            
+            <div class="time-label">2</div>
+            <div class="input-cell"><input type="text"></div>
+            <div class="input-cell"><input type="text"></div>
+            <div class="input-cell"><input type="text"></div>
+            <div class="input-cell"><input type="text"></div>
+            <div class="input-cell"><input type="text"></div>
+            
+            <div class="time-label">3</div>
+            <div class="input-cell"><input type="text"></div>
+            <div class="input-cell"><input type="text"></div>
+            <div class="input-cell"><input type="text"></div>
+            <div class="input-cell"><input type="text"></div>
+            <div class="input-cell"><input type="text"></div>
+
+            <div class="time-label">4</div>
+            <div class="input-cell"><input type="text"></div>
+            <div class="input-cell"><input type="text"></div>
+            <div class="input-cell"><input type="text"></div>
+            <div class="input-cell"><input type="text"></div>
+            <div class="input-cell"><input type="text"></div>
+        </div>
+
+        <div class="button-group">
+            <button id="register-btn" class="action-button">登録</button>
+            <button id="call-template-btn" class="action-button">テンプレを呼び出す</button>
+        </div>
+    </div>
+
+    <div id="modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <p>テンプレート化しますか？</p>
+            <div class="modal-buttons">
+                <button id="modal-yes-btn">はい</button>
+                <button id="modal-no-btn">いいえ</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/Timetable.js"></script>
+</body>
+</html>

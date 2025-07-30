@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教員（ユーザー）検索画面</title>
+    <link rel="stylesheet" href="css/Teacher.css"> </head>
+<body>
+    <div class="container">
+        <h1>教員（ユーザー）検索画面</h1>
+
+        <div class="yellow-area input-area">
+            <h2>ユーザー情報検索条件</h2>
+            <div class="input-group">
+                <label for="studentId">学籍番号:</label>
+                <input type="text" id="studentId" placeholder="学籍番号を入力">
+            </div>
+            <div class="input-group">
+                <label for="grade">学年:</label>
+                <input type="text" id="grade" placeholder="学年を入力">
+            </div>
+            <div class="input-group">
+                <label for="name">名前:</label>
+                <input type="text" id="name" placeholder="名前を入力">
+            </div>
+            <div class="input-group">
+                <label for="furigana">フリガナ:</label>
+                <input type="text" id="furigana" placeholder="フリガナを入力">
+            </div>
+            <button id="searchButton">検索</button>
+        </div>
+
+        <div class="white-area result-area">
+            <h2>検索結果</h2>
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>学籍番号</th>
+                        <th>学年</th>
+                        <th>名前</th>
+                        <th>フリガナ</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="searchResultsBody">
+                    </tbody>
+            </table>
+            <div class="detail-button-container">
+                <button id="detailDisplayButton">詳細表示ボタン</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/Teacher.js"></script> </body>
+</html>

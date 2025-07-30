@@ -1,0 +1,196 @@
+body {
+    font-family: sans-serif;
+    background-color: #e0f7fa; /* 水色背景 */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 50px;
+    margin: 0;
+}
+
+.container {
+    width: 600px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ヘッダー全体を中央に配置 */
+.header {
+    display: flex;
+    justify-content: center; /* これを追加 */
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.date-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#selected-date {
+    border: 1px solid #ccc;
+    padding: 8px;
+    font-size: 16px;
+    width: 150px;
+    text-align: center;
+}
+
+#calendar-toggle-btn {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.calendar-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.calendar-container.hidden {
+    display: none;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.calendar-header button {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background-color: #ccc; /* グリッド線の色 */
+    text-align: center;
+}
+
+.day-of-week {
+    background-color: #f0f0f0;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+.calendar-body {
+    display: contents; /* 親のグリッドを継承 */
+}
+
+/* Base style for calendar day cells */
+.calendar-day {
+    background-color: #fff;
+    padding: 15px 0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* Hover effect for clickable days */
+.calendar-day:hover:not(.disabled):not(.empty) {
+    background-color: #e0f0ff;
+}
+
+/* Empty cells before the 1st of the month */
+.calendar-day.empty {
+    background-color: #f9f9f9;
+    cursor: default;
+}
+
+/* Selected day style */
+.calendar-day.selected {
+    background-color: #ff9999;
+    border: 2px solid #ff0000; /* Added a distinct border for selected */
+}
+
+/* Today's date style */
+.calendar-day.today {
+    border: 2px solid #ff9999;
+}
+
+/* --- New Styles for Weekend and Holiday Coloring --- */
+
+/* 土曜日の文字色 (青色) */
+.calendar-day.saturday {
+    color: #2196F3; /* Google Material Design Blue 500 */
+}
+
+/* 日曜日の文字色 (赤色) */
+.calendar-day.sunday {
+    color: #F44336; /* Google Material Design Red 500 */
+}
+
+/* 無効な日付（土日祝日）のスタイル */
+/* disabledクラスが付いている場合は、土日祝日の色を維持しつつ、見た目を薄くする */
+.calendar-day.disabled {
+    background-color: #f0f0f0; /* 薄い灰色背景 */
+    cursor: not-allowed;
+    pointer-events: none; /* クリックイベントを無効にする */
+    opacity: 0.7; /* 少し透明にして無効感を出す */
+}
+
+/* disabledとselectedが同時に付くことはない想定ですが、念のため */
+.calendar-day.disabled.selected {
+    /* この状態はロジック上発生しないはずですが、発生した場合の見た目を定義 */
+    background-color: #f0f0f0;
+    border: none;
+}
+
+/* --- End New Styles --- */
+
+
+.new-entry-button {
+    background-color: #ffcccc;
+    border: none;
+    padding: 100px 20px;
+    text-align: center;
+    width: 100%;
+    min-height: 200px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-entry-button:hover {
+    filter: brightness(0.95);
+}
+
+.new-entry-button .new-entry {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.new-entry-button .description {
+    font-size: 14px;
+    color: #666;
+    margin: 10px 0 0;
+}
+
+.template-button {
+    display: block;
+    width: 200px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+}

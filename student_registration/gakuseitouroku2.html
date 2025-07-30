@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生情報入力フォーム</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #e0f2f7; /* 画像の背景色に近づける */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding-top: 50px;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            
+        }
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .form-group label {
+            width: 120px;
+            margin-right: 10px;
+            white-space: nowrap;
+        }
+        .form-group select, .form-group input[type="text"] {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .table-container {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            background-color: #fcf8e3; /* 黄色の背景色に近づける */
+            height: 200px; /* スクロールできるように高さを設定 */
+            overflow-y: auto; /* 縦スクロールを有効にする */
+            padding: 10px;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #eee;
+        }
+        .button-group {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .button-group button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .button-group #cancelButton {
+            background-color: #f44336;
+            color: white;
+        }
+        .button-group #registerButton {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .input-status {
+            text-align: right;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        /* 右側の選択肢リストのスタイル */
+        .sidebar {
+            margin-left: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .list-box {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 4px;
+            width: 150px;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+        .list-box div {
+            padding: 5px 0;
+            cursor: pointer;
+        }
+        .list-box div:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-group">
+            <label for="courseName">学科名・コース名</label>
+            <select id="courseName">
+                <option value="">選択してください</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="admissionYear">入学年度</label>
+            <select id="admissionYear">
+                <option value="">選択してください</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="class">クラス</label>
+            <select id="class">
+                <option value="">選択してください</option>
+            </select>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>学籍番号</th>
+                        <th>学年</th>
+                        <th>名前</th>
+                        <th>フリガナ</th>
+                    </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                    </tbody>
+            </table>
+        </div>
+
+        <div class="button-group">
+            <button id="resetButton">リセット</button>
+            <button id="cancelButton">キャンセル</button>
+            <button id="registerButton">登録</button>
+        </div>
+        <div class="input-status">
+            入力済み：<span id="inputCount">0</span>名
+        </div>
+    </div>
+
+
+    <script src="js/script.js"></script>
+</body>
+</html>
