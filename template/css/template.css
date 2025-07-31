@@ -35,13 +35,13 @@ body {
     color: #555;
 }
 
-/* テンプレートリストのコンテナ（大きな赤色の部分） */
+/* テンプレートリストのコンテナ（元の大きな赤色の部分を白系に） */
 .template-display {
     position: relative;
     width: 90%; /* 必要に応じて調整 */
     height: 350px; /* コンテンツの増加に合わせて高さを調整 */
-    background-color: #ffcccc; /* メインのテンプレートエリアの薄い赤色 */
-    border: 1px solid #ccc;
+    background-color: #f8f8f8; /* 薄いグレーがかった白に変更 */
+    border: 1px solid #e0e0e0; /* ボーダーも薄いグレーに */
     border-radius: 5px;
     overflow-y: auto; /* 縦方向のスクロールを有効にする */
     padding: 10px;
@@ -55,10 +55,10 @@ body {
     gap: 15px; /* テンプレートアイテム間の間隔 */
 }
 
-/* 個々のテンプレートアイテム（小さな赤色のボックス） */
+/* 個々のテンプレートアイテム（元の小さな赤色のボックスを白系に） */
 .template-item {
-    background-color: #ff9999; /* 個々のテンプレートボックスの濃い赤色 */
-    border: 1px solid #cc6666;
+    background-color: #ffffff; /* 白に変更 */
+    border: 1px solid #dcdcdc; /* 薄いグレーのボーダー */
     height: auto; /* コンテンツに基づいて高さを自動調整 */
     min-height: 120px; /* 視認性向上のための最小高さ */
     border-radius: 3px;
@@ -74,14 +74,15 @@ body {
 
 /* テンプレートアイテムのホバーエフェクト */
 .template-item:hover {
-    background-color: #ff6666; /* ホバー時に濃くする */
+    background-color: #f0f0f0; /* ホバー時に薄いグレーにする */
+    border-color: #c0c0c0;
 }
 
 /* 選択されたテンプレートアイテムのスタイル */
 .template-item.selected {
     border: 2px solid #007bff; /* 選択されたアイテムの青い枠線 */
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-    background-color: #ff6666; /* 選択時も濃い背景色を維持 */
+    background-color: #e6e6e6; /* 選択時は少し濃いグレーの背景色を維持 */
 }
 
 /* テンプレートアイテム内の名前表示 */
@@ -106,10 +107,10 @@ body {
     flex-grow: 1; /* グリッドが利用可能な高さを埋めるようにする */
 }
 
-/* 時間割グリッド内のセルの共通スタイル */
+/* 時間割グリッド内のセルの共通スタイル（元の薄い赤色を白系に） */
 .grid-header-day, .grid-header-time, .grid-cell {
-    background-color: #ffe0e0; /* セルの薄い赤色 */
-    border: 1px solid #ffcccc;
+    background-color: #ffffff; /* セルの背景を白に変更 */
+    border: 1px solid #f0f0f0; /* ボーダーも薄いグレーに */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -124,16 +125,16 @@ body {
     text-overflow: ellipsis; /* はみ出したテキストに省略記号を追加 */
 }
 
-/* 曜日のヘッダーセル（月、火など） */
+/* 曜日のヘッダーセル（月、火など）（元の赤系を白系に） */
 .grid-header-day {
-    background-color: #ffdada; /* 曜日のヘッダーに少し異なる色 */
+    background-color: #f5f5f5; /* 曜日のヘッダーに少し異なる白系色 */
     font-weight: bold;
     color: #444;
 }
 
-/* 時間帯のヘッダーセル（1、2など） */
+/* 時間帯のヘッダーセル（1、2など）（元の赤系を白系に） */
 .grid-header-time {
-    background-color: #ffdada; /* 時間帯のヘッダーに少し異なる色 */
+    background-color: #f5f5f5; /* 時間帯のヘッダーに少し異なる白系色 */
     font-weight: bold;
     color: #444;
 }
@@ -141,8 +142,8 @@ body {
 /* スクロールインジケーターのスタイル（基本的なもの、ほとんどはブラウザが処理） */
 .scroll-indicator {
     /* この要素は主に画像の視覚的参照用です。
-       実際のブラウザではネイティブのスクロールバーが機能を処理します。
-       ネイティブのスクロールバーに依存する場合は、このdivは実際の実装では不要かもしれません。 */
+     * 実際のブラウザではネイティブのスクロールバーが機能を処理します。
+     * ネイティブのスクロールバーに依存する場合は、このdivは実際の実装では不要かもしれません。 */
     position: absolute;
     top: 0;
     right: 0;
@@ -278,7 +279,7 @@ button {
 .modal-schedule-grid {
     display: grid;
     /* 最初の列は時間（狭く）、続く5列は曜日 */
-    grid-template-columns: 0.6fr repeat(5, 1fr); 
+    grid-template-columns: 0.6fr repeat(5, 1fr);
     /* 最初の行は曜日ヘッダー、続く4行は時間帯 */
     grid-template-rows: auto repeat(4, 1fr);
     gap: 1px; /* グリッド線 */

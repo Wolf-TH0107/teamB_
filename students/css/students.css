@@ -1,222 +1,396 @@
+/* css/students.css */
+
+/* --- 基本スタイル --- */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #e0f2f7; /* Light blue background as in the image */
     margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
 }
 
 .container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
     background-color: #ffffff;
-    border: 1px solid #ccc;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    width: 100%;
-    max-width: 800px;
-    text-align: center;
-    box-sizing: border-box;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    color: #333;
+    text-align: center;
+    color: #2c3e50;
     margin-bottom: 30px;
-    font-size: 2em;
+    font-size: 2.5em;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
 }
 
-.bottom-buttons-container button {
-    background-color: #007bff;
-    color: white;
+/* --- ボタンコンテナ --- */
+.bottom-buttons-container{
+    display: flex;
+    justify-content: end;
+    gap: 15px; /* ボタン間のスペース */
+    margin-bottom: 25px;
+}
+
+.bottom-buttons-container2{
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* ボタン間のスペース */
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* ボタン間のスペース */
+    margin-bottom: 25px;
+}
+
+/* ここを修正: back-buttonを共通スタイルに追加 */
+.bottom-buttons-container button,
+.bottom-buttons-container2 button, /* bottom-buttons-container2 にも適用する場合 */
+.action-buttons button,
+.back-button { /* back-button もここに含める */
     padding: 10px 20px;
+    font-size: 1.05em;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    white-space: nowrap; /* ボタン内のテキストが改行されないように */
 }
 
-.bottom-buttons-container button:hover {
-    background-color: #0056b3;
+
+#createButton {
+    background-color: #4CAF50; /* 緑色 */
+    color: white;
 }
 
+#createButton:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+.btn-change {
+    background-color: #008CBA; /* 青色 */
+    color: white;
+}
+
+.btn-change:hover {
+    background-color: #007bb5;
+    transform: translateY(-2px);
+}
+
+.btn-delete {
+    background-color: #f44336; /* 赤色 */
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #da190b;
+    transform: translateY(-2px);
+}
+
+/* back-button の個別スタイルを削除し、色だけ定義 */
+.back-button {
+    background-color: #008CBA; /* 変更ボタンと同じ青色 */
+    color: white;
+}
+
+.back-button:hover {
+    background-color: #007bb5; /* 変更ボタンと同じホバー色 */
+}
+
+/* --- テーブルエリア --- */
 .yellow-area {
-    background-color: #ffffcc; /* Yellow color as in the image */
-    border: 1px solid #ccc;
-    min-height: 250px; /* Adjust height as needed */
+    background-color: #fffacd; /* 薄い黄色 */
+    border: 1px solid #ffe082;
+    padding: 20px;
+    border-radius: 8px;
     margin-bottom: 30px;
-    padding: 15px; /* Added padding for content inside */
-    overflow: auto; /* Enable scrolling if content is larger */
-    text-align: left; /* Align text within the yellow area */
+    overflow-x: auto; /* テーブルがはみ出す場合にスクロール可能にする */
 }
 
 .student-info-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+    margin-bottom: 15px;
+    background-color: #ffffff;
 }
 
-.student-info-table th, .student-info-table td {
+.student-info-table th,
+.student-info-table td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px;
     text-align: left;
+    white-space: nowrap; /* セル内のテキストが改行されないように */
 }
 
 .student-info-table th {
     background-color: #f2f2f2;
     font-weight: bold;
+    color: #444;
 }
 
-.student-info-table tr:nth-child(even){background-color: #f9f9f9;}
-
-/* 選択された行のスタイル。背景色を少し濃くする */
-.student-info-table tr.selected-row {
-    background-color: #d4edda; /* 薄い緑色 */
+.student-info-table tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
 .student-info-table tr:hover {
     background-color: #e9e9e9;
 }
 
-.student-info-table button {
+.select-student-btn {
+    padding: 8px 12px;
     background-color: #6c757d;
     color: white;
-    padding: 5px 10px;
     border: none;
-    border-radius: 3px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 0.9em;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease;
 }
 
-.student-info-table button:hover {
+.select-student-btn:hover {
     background-color: #5a6268;
 }
 
-
+/* --- 入力セクション --- */
 .input-section {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin-bottom: 30px;
+    flex-direction: column; /* 要素を縦に並べる */
+    gap: 20px; /* 行間のスペース */
+    margin-bottom: 25px;
 }
 
 .input-row {
     display: flex;
     align-items: center;
-    justify-content: center; /* Center content horizontally */
-    gap: 15px;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 15px; /* 要素間のスペース */
+    flex-wrap: wrap; /* 小さい画面で折り返す */
 }
 
 .input-row label {
+    flex-shrink: 0; /* ラベルが縮まないように */
     font-weight: bold;
-    color: #555;
-    min-width: 120px; /* Ensure labels align */
-    text-align: right;
+    color: #333;
+    min-width: 120px; /* ラベルの最小幅 */
 }
 
 .input-row input[type="text"],
 .input-row select {
-    flex-grow: 1;
-    max-width: 250px;
+    flex-grow: 1; /* 入力フィールドが利用可能なスペースを埋めるように */
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
     font-size: 1em;
-    box-sizing: border-box;
+    max-width: 300px; /* 最大幅を設定 */
 }
 
 .input-row button {
-    background-color: #28a745;
+    padding: 10px 15px;
+    background-color: #007bff;
     color: white;
-    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0; /* ボタンが縮まないように */
 }
 
 .input-row button:hover {
-    background-color: #218838;
+    background-color: #0056b3;
 }
 
+/* --- 表示セクション --- */
 .display-section {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    background-color: #e0f2f7; /* 薄い青色 */
+    border: 1px solid #b3e5fc;
     padding: 15px;
-    border: 1px solid #ddd;
     border-radius: 8px;
-    background-color: #f9f9f9;
-    text-align: left;
+    margin-bottom: 25px;
+    font-size: 1.1em;
+    color: #333;
 }
 
 .display-section p {
     margin: 5px 0;
-    color: #444;
-    font-size: 1.1em;
 }
 
-.action-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 30px;
+.display-section span {
+    font-weight: bold;
+    color: #0056b3;
 }
 
-.action-buttons button {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1em;
-    transition: background-color 0.3s ease;
-}
+/* --- モバイル対応スタイル --- */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+        margin: 10px auto; /* 上下のマージンを減らす */
+    }
 
-.action-buttons .btn-change {
-    background-color: #17a2b8;
-    color: white;
-}
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        text-align: center; 
+    }
 
-.action-buttons .btn-change:hover {
-    background-color: #138496;
-}
+    /* ボタンコンテナの調整 */
+    .bottom-buttons-container{
+        flex-direction: column; /* ボタンを縦に並べる */
+        gap: 10px;
+        margin-bottom: 15px;
+        align-items: flex-end; /* 右寄せ */
+    }
 
-.action-buttons .btn-delete {
-    background-color: #dc3545;
-    color: white;
-}
+    .bottom-buttons-container2{
+        flex-direction: column; /* ボタンを縦に並べる */
+        gap: 10px;
+        margin-bottom: 15px;
+        align-items: flex-start; /* ボタンコンテナ内のボタンを左揃えに */
+    }
 
-.action-buttons .btn-delete:hover {
-    background-color: #c82333;
-}
+    .action-buttons {
+        flex-direction: column; /* ボタンを縦に並べる */
+        gap: 10px;
+        margin-bottom: 15px;
+        align-items: flex-start; /* ボタンコンテナ内のボタンを左揃えに */
+    }
 
-.bottom-buttons-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
-}
+    /* モバイルでの共通ボタンサイズ調整 */
+    .bottom-buttons-container button,
+    .bottom-buttons-container2 button,
+    .action-buttons button {
+        width: 100%; /* ボタンの幅を100%にする */
+        padding: 12px 15px;
+        font-size: 1.1em;
+        box-sizing: border-box; /* パディングとボーダーを幅に含める */
+    }
 
-.back-button {
-    background-color: #6c757d;
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1em;
-    transition: background-color 0.3s ease;
-}
+    /* 「新規作成」ボタンの個別調整（モバイルで小さく保つ） */
+    #createButton {
+        width: auto; /* 幅を自動調整に戻す */
+        padding: 8px 15px; /* パディングを小さくしてボタンの高さを抑える */
+        font-size: 1em; /* フォントサイズを標準に戻す */
+        max-width: 150px; /* 最大幅を設定 */
+        align-self: flex-end; /* 親要素の flex-direction: column と justify-content: flex-end; に合わせて右寄せ */
+    }
 
-.back-button:hover {
-    background-color: #5a6268;
-}
-#createButton{
-    margin-left: 630px;
-    margin-bottom: 20px;
+    /* 「管理者画面に戻る」ボタンをモバイルでフル幅にするための調整（これは残す） */
+    .bottom-buttons-container .back-button {
+        width: 100%;
+        padding: 12px 15px;
+        font-size: 1.1em;
+        box-sizing: border-box; /* パディングとボーダーを幅に含める */
+    }
+
+    /* テーブルのモバイル対応 */
+    .student-info-table {
+        border: none;
+        width: 100%;
+    }
+
+    .student-info-table thead {
+        display: none; /* モバイルではヘッダーを非表示にする */
+    }
+
+    .student-info-table,
+    .student-info-table tbody,
+    .student-info-table tr,
+    .student-info-table td {
+        display: block; /* テーブル要素をブロック要素として扱う */
+    }
+
+    .student-info-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .student-info-table td {
+        text-align: left; /* データ全体を左揃えに */
+        padding-left: 10px; /* 左パディングを調整 */
+        position: relative;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom: 1px dashed #eee;
+    }
+
+    /* data-labelの調整 (ラベルとデータが縦に並ぶように) */
+    .student-info-table td::before {
+        content: attr(data-label);
+        display: block; /* ラベルをブロック要素にして改行させる */
+        font-weight: bold;
+        color: #555;
+        margin-bottom: 3px; /* ラベルとデータの間隔 */
+        position: static; /* positionをstaticに戻し、フロー内に配置 */
+        width: auto; /* 幅を自動に */
+        padding-right: 0; /* 右パディングをリセット */
+    }
+
+    .student-info-table td:last-child {
+        border-bottom: none;
+    }
+
+    /* 入力セクションの調整 */
+    .input-section {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start; /* 入力セクション全体を左揃えに */
+    }
+
+    .input-row {
+        flex-direction: column;
+        align-items: flex-start; /* 各入力行の要素を左揃えに */
+        gap: 5px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+        width: 100%; /* input-rowの幅を100%に */
+        box-sizing: border-box; /* パディングとボーダーを幅に含める */
+    }
+
+    .input-row label {
+        margin-bottom: 5px;
+        font-weight: bold;
+        text-align: left; /* ラベルのテキストを左揃えに */
+    }
+
+    .input-row input,
+    .input-row select {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        text-align: left; /* 入力フィールド内のテキストを左揃えに */
+    }
+
+    .input-row button {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+    }
+
+    /* 表示セクションの調整 */
+    .display-section {
+        padding: 15px;
+        border-radius: 5px;
+        background-color: #f0f8ff;
+        border: 1px solid #cceeff;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: left; /* 表示テキストを左揃えに */
+    }
+
+    .display-section p {
+        margin-bottom: 8px;
+        font-size: 1.1em;
+    }
 }

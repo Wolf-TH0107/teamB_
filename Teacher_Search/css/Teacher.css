@@ -170,3 +170,133 @@ h1 {
 .detail-button-container button:hover {
     background-color: #218838;
 }
+
+/* --- モバイル対応スタイル --- */
+@media (max-width: 768px) {
+    body {
+        padding: 10px; /* 全体のパディングを調整 */
+        align-items: flex-start; /* コンテンツを上部に寄せる */
+        min-height: auto; /* 最小高さを自動に */
+    }
+
+    .container {
+        padding: 15px; /* コンテナのパディングを調整 */
+        border-radius: 5px; /* 角の丸みを少し小さく */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 影を軽くする */
+    }
+
+    h1 {
+        font-size: 1.6em; /* タイトルを小さく */
+        margin-bottom: 20px;
+    }
+
+    .yellow-area,
+    .white-area {
+        padding: 15px; /* エリアのパディングを調整 */
+        min-height: auto; /* 高さを自動調整に */
+    }
+
+    .yellow-area h2,
+    .white-area h2 {
+        font-size: 1.1em; /* サブタイトルを小さく */
+        margin-bottom: 10px;
+    }
+
+    /* 入力グループのモバイル対応 */
+    .input-group {
+        flex-direction: column; /* 要素を縦に並べる */
+        align-items: flex-start; /* 左揃え */
+        gap: 5px; /* 要素間のスペースを調整 */
+        margin-bottom: 15px; /* グループ間の余白 */
+    }
+
+    .input-group label {
+        flex-basis: auto; /* ラベルの固定幅を解除 */
+        width: 100%; /* ラベルの幅を100%に */
+        text-align: left; /* ラベルのテキストを左揃えに */
+        margin-bottom: 3px; /* ラベルと入力欄の間の余白 */
+    }
+
+    .input-group input[type="text"] {
+        width: 100%; /* 入力フィールドの幅を100%に */
+        padding: 10px; /* 入力フィールドのパディングを調整 */
+        box-sizing: border-box; /* パディングとボーダーを幅に含める */
+    }
+
+    .yellow-area button {
+        width: 100%; /* ボタンの幅を100%に */
+        padding: 12px 15px; /* ボタンのパディングを増やす */
+        font-size: 1.1em; /* ボタンのフォントサイズを大きく */
+        margin-top: 10px;
+        margin-left: 0; /* 中央揃え解除 */
+        margin-right: 0; /* 中央揃え解除 */
+    }
+
+    /* テーブルのモバイル対応 */
+    .result-table {
+        border: none; /* 全体のボーダーをなくす */
+        width: 100%; /* テーブルの幅を100%にする */
+    }
+
+    .result-table thead {
+        display: none; /* モバイルではヘッダーを非表示にする */
+    }
+
+    .result-table,
+    .result-table tbody,
+    .result-table tr,
+    .result-table td {
+        display: block; /* テーブル要素をブロック要素として扱う */
+    }
+
+    .result-table tr {
+        margin-bottom: 15px; /* 各行の間にスペースを入れる */
+        border: 1px solid #ddd; /* 行ごとに区切り線を入れる */
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .result-table td {
+        text-align: right; /* データは右寄せに */
+        padding-left: 45%; /* ラベル用のスペースを確保 */
+        position: relative;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom: 1px dashed #eee; /* 各セル間の点線 */
+        white-space: normal; /* セル内のテキストの改行を許可 */
+    }
+
+    .result-table td:last-child {
+        border-bottom: none; /* 最後のセルの下線は不要 */
+    }
+
+    .result-table td::before {
+        content: attr(data-label); /* data-label属性の値を表示 */
+        position: absolute;
+        left: 10px;
+        width: 40%;
+        text-align: left;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .result-table button {
+        width: 100%; /* テーブル内のボタンもフル幅に */
+        padding: 8px 10px;
+        font-size: 1em;
+        margin-top: 10px; /* ボタンの上に少しスペース */
+    }
+
+    .detail-button-container {
+        text-align: center; /* 詳細表示ボタンのコンテナを中央寄せ */
+        padding-top: 15px; /* 上部のパディングを増やす */
+    }
+
+    .detail-button-container button {
+        width: 100%; /* 詳細表示ボタンをフル幅に */
+        padding: 12px 20px;
+        font-size: 1.1em;
+    }
+}

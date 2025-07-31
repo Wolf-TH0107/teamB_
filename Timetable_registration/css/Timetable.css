@@ -12,6 +12,7 @@ body {
     width: 600px;
     background-color: #fff;
     border: 1px solid #ccc;
+    border-radius: 10px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -43,8 +44,9 @@ body {
     background-color: #f0f0f0;
 }
 
+/* 時間割の入力セルを白に変更 */
 .input-cell {
-    background-color: #ffcccc; /* 赤色の部分 */
+    background-color: #fff; /* 背景色を白に変更しました */
     border: 1px solid #000;
     display: flex;
     justify-content: center;
@@ -70,13 +72,39 @@ body {
     gap: 10px;
 }
 
+/* 既存の .action-button スタイルを更新 */
 .action-button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #fff;
-    border: 1px solid #ccc;
     cursor: pointer;
+    border-radius: 5px; /* 角を丸くする */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* ホバー時のアニメーション */
 }
+
+/* 登録ボタンのスタイル（水色に変更） */
+.action-button.register {
+    background-color: #81D4FA; /* 明るい水色 */
+    color: white; /* 文字色を白に */
+    border: 1px solid #81D4FA;
+}
+
+.action-button.register:hover {
+    background-color: #4FC3F7; /* ホバーで少し濃い水色 */
+    border-color: #4FC3F7;
+}
+
+/* テンプレを呼び出すボタンのスタイル（以前と同じ青系を維持） */
+.action-button.recall-template {
+    background-color: #008CBA; /* 少し濃い目の青 */
+    color: white;
+    border: 1px solid #008CBA;
+}
+
+.action-button.recall-template:hover {
+    background-color: #007bb5; /* ホバーでさらに濃い青 */
+    border-color: #007bb5;
+}
+
 
 /* モーダルウィンドウのスタイル */
 .modal-overlay {
