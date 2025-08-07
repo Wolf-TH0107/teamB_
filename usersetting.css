@@ -1,141 +1,103 @@
-/* General Body Styles */
+/* 全体設定 */
 body {
-    font-family: 'Segoe UI', 'Roboto', sans-serif; /* Modern, clean font stack */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; /* 落ち着いた背景色 */
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
     margin: 0;
-    background: linear-gradient(135deg, #f0f2f5 0%, #e0e5ec 100%); /* Subtle gradient background */
-    color: #333;
-    line-height: 1.6;
 }
 
-/* Container for the Form */
+/* コンテナ */
 .container {
     background-color: #ffffff;
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft, modern shadow */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* 柔らかな影 */
     width: 100%;
-    max-width: 450px; /* Max width for better readability on larger screens */
-    box-sizing: border-box;
+    max-width: 400px;
     text-align: center;
-    transform: translateY(0);
-    transition: transform 0.3s ease-in-out;
+    box-sizing: border-box;
 }
 
-.container:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
-}
-
-/* Heading Style */
+/* ヘッダー */
 h1 {
-    color: #2c3e50; /* Darker, professional color */
+    color: #333;
     margin-bottom: 30px;
-    font-size: 2.2em;
-    font-weight: 700;
-    letter-spacing: -0.5px;
+    font-size: 24px;
+    font-weight: 600;
 }
 
-/* Form Grouping for Labels and Inputs */
+/* フォームグループ */
 .form-group {
     margin-bottom: 25px;
-    text-align: left; /* Align labels and inputs to the left */
+    text-align: left;
 }
 
-/* Label Styles */
+/* ラベル */
 label {
-    display: block; /* Each label on its own line */
+    display: block;
     margin-bottom: 8px;
     color: #555;
-    font-size: 1em;
     font-weight: 500;
 }
 
-/* Input Field Styles */
-input[type="email"],
-input[type="text"] {
+/* 入力フィールド */
+input[type="email"] {
     width: 100%;
-    padding: 14px 15px;
-    border: 1px solid #ced4da;
-    border-radius: 8px; /* Slightly more rounded corners */
-    font-size: 1em;
-    color: #333;
-    transition: all 0.3s ease; /* Smooth transition for focus effect */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    -webkit-appearance: none; /* Remove default iOS styling */
-    -moz-appearance: none; /* Remove default Firefox styling */
-    appearance: none;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
 }
 
-input[type="email"]:focus,
-input[type="text"]:focus {
-    border-color: #007bff; /* Highlight color on focus */
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Subtle glow on focus */
-    outline: none; /* Remove default outline */
+input[type="email"]:focus {
+    outline: none;
+    border-color: #007bff; /* フォーカス時の色 */
 }
 
-/* Button Styles */
-button[type="submit"] {
-    background-color: #007bff; /* Primary action color */
-    color: white;
-    padding: 15px 30px;
+/* ボタンのグループ */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* ボタン共通スタイル */
+button {
+    flex-grow: 1;
+    padding: 12px;
     border: none;
     border-radius: 8px;
-    font-size: 1.1em;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effects */
-    width: 100%; /* Full width button */
-    margin-top: 25px; /* More space above the button */
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2); /* Subtle button shadow */
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+/* 送信ボタン */
+button[type="submit"] {
+    background-color: #007bff; /* メインカラー */
+    color: #fff;
 }
 
 button[type="submit"]:hover {
-    background-color: #0056b3; /* Darker shade on hover */
-    transform: translateY(-2px); /* Slight lift effect */
-    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3); /* Enhanced shadow on hover */
+    background-color: #0056b3;
+    transform: translateY(-2px); /* ホバー時の浮遊効果 */
 }
 
-button[type="submit"]:active {
-    background-color: #004085; /* Even darker on click */
-    transform: translateY(0); /* Return to original position */
-    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2); /* Reduced shadow on click */
+/* 戻るボタン */
+button[type="button"] {
+    background-color: #e9ecef;
+    color: #555;
+    border: 1px solid #ccc;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 600px) {
-    .container {
-        margin: 20px;
-        padding: 30px 25px; /* Adjust padding for smaller screens */
-    }
-
-    h1 {
-        font-size: 1.8em;
-        margin-bottom: 25px;
-    }
-
-    input[type="email"],
-    input[type="text"] {
-        padding: 12px 14px;
-        font-size: 0.95em;
-    }
-
-    button[type="submit"] {
-        padding: 12px 25px;
-        font-size: 1em;
-        margin-top: 20px;
-    }
-}
-
-@media (max-width: 400px) {
-    .container {
-        padding: 25px 20px;
-    }
-
-    h1 {
-        font-size: 1.6em;
-    }
+button[type="button"]:hover {
+    background-color: #ced4da;
+    transform: translateY(-2px);
 }
