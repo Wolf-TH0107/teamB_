@@ -1,103 +1,146 @@
-/* 全体設定 */
+/* 基本設定 */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f2f5; /* 落ち着いた背景色 */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f7fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh;
 }
 
 /* コンテナ */
 .container {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* 柔らかな影 */
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
+    padding: 2.5rem;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     text-align: center;
-    box-sizing: border-box;
 }
 
-/* ヘッダー */
 h1 {
-    color: #333;
-    margin-bottom: 30px;
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #2c3e50;
 }
 
 /* フォームグループ */
 .form-group {
-    margin-bottom: 25px;
     text-align: left;
+    margin-bottom: 1.5rem;
 }
 
-/* ラベル */
 label {
     display: block;
-    margin-bottom: 8px;
-    color: #555;
-    font-weight: 500;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #7f8c8d;
+    margin-bottom: 0.6rem;
 }
 
-/* 入力フィールド */
 input[type="email"] {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
+    padding: 0.9rem 1.2rem;
+    border: 1px solid #dfe6e9;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #34495e;
     box-sizing: border-box;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input[type="email"]:focus {
     outline: none;
-    border-color: #007bff; /* フォーカス時の色 */
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
 }
 
-/* ボタンのグループ */
+/* ボタングループ */
 .button-group {
     display: flex;
     justify-content: space-between;
-    gap: 15px;
-    margin-top: 30px;
+    gap: 1.2rem;
+    margin-top: 2.5rem;
 }
 
-/* ボタン共通スタイル */
-button {
-    flex-grow: 1;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
-}
-
-/* 送信ボタン */
+.back-button,
 button[type="submit"] {
-    background-color: #007bff; /* メインカラー */
+    flex-grow: 1;
+    padding: 0.9rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, background-color 0.2s;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-button {
+    background-color: #ecf0f1;
+    color: #7f8c8d;
+}
+
+.back-button:hover {
+    background-color: #dfe6e9;
+    transform: translateY(-2px);
+}
+
+button[type="submit"] {
+    background-color: #3498db;
     color: #fff;
 }
 
 button[type="submit"]:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px); /* ホバー時の浮遊効果 */
-}
-
-/* 戻るボタン */
-button[type="button"] {
-    background-color: #e9ecef;
-    color: #555;
-    border: 1px solid #ccc;
-}
-
-button[type="button"]:hover {
-    background-color: #ced4da;
+    background-color: #2980b9;
     transform: translateY(-2px);
+}
+
+/* --------------------
+    モバイル対応
+-------------------- */
+@media (max-width: 600px) {
+    body {
+        align-items: flex-start;
+        padding-top: 2rem;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 1.5rem;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .button-group {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    /* この部分を修正しました */
+    .back-button,
+    button[type="submit"] {
+        width: 100%;
+        box-sizing: border-box; /* パディングを含めて幅100%にする */
+        transform: none;
+    }
+
+    .back-button:hover,
+    button[type="submit"]:hover {
+        transform: none;
+    }
 }
